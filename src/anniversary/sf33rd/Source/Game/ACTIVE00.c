@@ -51,13 +51,66 @@ void Pattern00_0002(PLW* wk) {
     }
 }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0003);
+void Pattern00_0003(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Adjust_Attack(wk, 9, 0x10);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0004);
+    case 1:
+        Normal_Attack(wk, 8, 0x20);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0005);
+    default:
+        End_Pattern(wk);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0006);
+    }
+}
+
+void Pattern00_0004(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Command_Attack(wk, 8, 0x1F, 0xA, -1);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
+
+void Pattern00_0005(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Approach_Walk(wk, 0x3B, 2);
+        return;
+
+    case 1:
+        Lever_Attack(wk, 8, 0, 0x110);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
+
+void Pattern00_0006(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Wait(wk, 0);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+
+}
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0007);
 
