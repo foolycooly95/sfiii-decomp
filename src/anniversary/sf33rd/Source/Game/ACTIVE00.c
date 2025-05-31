@@ -22,7 +22,7 @@ void Pattern00_0000(PLW* wk) {
 }
 
 void Pattern00_0001(PLW* wk) {
-    switch (CP_Index[wk->wu.id][0]) {                              /* irregular */
+    switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Normal_Attack(wk, 0xB, 0x10);
         return;
@@ -38,7 +38,18 @@ void Pattern00_0001(PLW* wk) {
     }
 }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0002);
+void Pattern00_0002(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+        case 0:
+            Command_Attack(wk, 8, 0x1E, 8, -1);
+            return;
+
+        default:
+            End_Pattern(wk);
+            return;
+
+    }
+}
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0003);
 
