@@ -6,17 +6,17 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Computer
 
 void Pattern00_0000(PLW* wk) {
     switch (CP_Index[wk->wu.id][0]) {
-        case 0:
-            Lever_Off(wk);
-            return;
+    case 0:
+        Lever_Off(wk);
+        return;
 
-        case 1:
-            Look(wk, 0);
-            return;
+    case 1:
+        Look(wk, 0);
+        return;
 
-        default:
-            End_Pattern(wk);
-            return;
+    default:
+        End_Pattern(wk);
+        return;
 
     }
 }
@@ -40,13 +40,13 @@ void Pattern00_0001(PLW* wk) {
 
 void Pattern00_0002(PLW* wk) {
     switch (CP_Index[wk->wu.id][0]) {
-        case 0:
-            Command_Attack(wk, 8, 0x1E, 8, -1);
-            return;
+    case 0:
+        Command_Attack(wk, 8, 0x1E, 8, -1);
+        return;
 
-        default:
-            End_Pattern(wk);
-            return;
+    default:
+        End_Pattern(wk);
+        return;
 
     }
 }
@@ -112,25 +112,154 @@ void Pattern00_0006(PLW* wk) {
 
 }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0007);
+void Pattern00_0007(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Normal_Attack(wk, 8, 0x400);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0008);
+    default:
+        End_Pattern(wk);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0009);
+    }
+}
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0010);
+void Pattern00_0008(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Normal_Attack(wk, 0xB, 0x100);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0011);
+    case 1:
+        Normal_Attack(wk, 8, 0x400);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0012);
+    default:
+        End_Pattern(wk);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0013);
+    }
+}
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0014);
+void Pattern00_0009(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Search_Back_Term(wk, 0x60, 2, 0x10);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0015);
+    case 1:
+        Jump(wk, 1);
+        return;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0016);
+    case 2:
+        Look(wk, 0);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
+
+void Pattern00_0010(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Normal_Attack(wk, 8, 0x402);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
+
+void Pattern00_0011(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Normal_Attack(wk, 9, 0x102);
+        return;
+
+    case 1:
+        Normal_Attack(wk, 8, 0x202);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+    }
+}
+
+void Pattern00_0012(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Normal_Attack(wk, 8, 0x40);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
+
+void Pattern00_0013(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Normal_Attack(wk, 8, 0x200);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
+
+void Pattern00_0014(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Jump_Attack_Term(wk, -1, -0x7FC0, 8, 0x40, 2, -0x7F90, 8,0x20);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
+
+void Pattern00_0015(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Walk(wk, 0, 0x30, 0);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
+
+void Pattern00_0016(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {
+    case 0:
+        Search_Back_Term(wk, 0x50, 2, 0);
+        return;
+
+    case 1:
+        Walk(wk, 1, 0x30, 0);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0017);
 
