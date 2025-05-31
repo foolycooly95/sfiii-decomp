@@ -21,7 +21,22 @@ void Pattern00_0000(PLW* wk) {
     }
 }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0001);
+void Pattern00_0001(PLW* wk) {
+    switch (CP_Index[wk->wu.id][0]) {                              /* irregular */
+    case 0:
+        Normal_Attack(wk, 0xB, 0x10);
+        return;
+
+    case 1:
+        Normal_Attack(wk, 8, 0x10);
+        return;
+
+    default:
+        End_Pattern(wk);
+        return;
+
+    }
+}
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/ACTIVE00", Pattern00_0002);
 
