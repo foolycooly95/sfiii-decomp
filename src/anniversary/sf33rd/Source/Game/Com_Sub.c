@@ -222,7 +222,7 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/Com_Sub", Hi_Jump_A
 #if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/Com_Sub", Hi_Jump_Attack_Term);
 #else
-void Hi_Jump_Attack_Term(PLW *wk, s16 Range_X, s16 Range_Y, s16 Reaction, u16 Lever_Data, s16 Jump_Dir, s16 Range_JX, s16 Range_JY, s16 J_Lever_Data) {
+void Hi_Jump_Attack_Term(PLW *wk, s16 Range_X, s16 Range_Y, s16 Reaction, u16 Lever_Data, s16 Jump_Dir, s16 Range_JX, s16 Range_JY, u16 J_Lever_Data) {
     not_implemented(__func__);
 }
 #endif
