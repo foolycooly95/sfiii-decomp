@@ -73,7 +73,7 @@ segments:
     # align: 128
     subalign: 4
     subsegments:
-    
+
       # .text
 
       - [0x000080, asm, sdk/crt0]
