@@ -145,7 +145,7 @@ const PatternFunc Pattern00_Tbl[] = {
 };
 
 void Computer00(PLW* wk) {
-    Pattern00_Tbl[(short)Pattern_Index[wk->wu.id]](wk);
+    Pattern00_Tbl[(s16)Pattern_Index[wk->wu.id]](wk);
 }
 
 void Pattern00_0000(PLW* wk) {
