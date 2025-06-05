@@ -208,7 +208,7 @@ void Pattern10_0013(PLW *wk) {
     }
 }
 
-)void Pattern10_0014(PLW *wk) {
+void Pattern10_0014(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Jump_Attack_Term(wk, -0x7FA0, -0x7FD0, 8, 0x20, 2, -0x7FA0, 8, 0x20);
@@ -280,7 +280,7 @@ void Pattern10_0020(PLW *wk) {
     }
 }
 
-)void Pattern10_0021(PLW *wk) {
+void Pattern10_0021(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Jump_Attack_Term(wk, -0x7FA0, -0x7FD0, 8, 0x40, 0, -0x7FA0, 8, 0x200);
@@ -292,7 +292,7 @@ void Pattern10_0020(PLW *wk) {
     }
 }
 
-)void Pattern10_0022(PLW *wk) {
+void Pattern10_0022(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Hi_Jump_Attack_Term(wk, -0x7FB0, -1, 8, 0x8100, 0, -0x7FA0, 8, 0x200);
@@ -316,7 +316,7 @@ void Pattern10_0023(PLW *wk) {
     }
 }
 
-)void Pattern10_0024(PLW *wk) {
+void Pattern10_0024(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Hi_Jump_Attack_Term(wk, -0x7FA0, -0x7FD0, 8, 0x20, 2, -0x7FA0, 8, 0x400);
@@ -610,7 +610,7 @@ void Pattern10_0042(PLW *wk) {
     }
 }
 
-)void Pattern10_0043(PLW *wk) {
+void Pattern10_0043(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Jump_Attack_Term(wk, -0x7FA0, 8, 8, 0x8400, 0, -1, -0x7FA0, 0x400);
@@ -622,7 +622,7 @@ void Pattern10_0042(PLW *wk) {
     }
 }
 
-)void Pattern10_0044(PLW *wk) {
+void Pattern10_0044(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Jump_Attack_Term(wk, -0x7FA0, -0x7FC0, 8, 0x20, 0, -0x7FA0, 8, 0x400);
@@ -726,7 +726,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0052(PLW *wk) {
+void Pattern10_0052(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         SA_Term(wk, 0x2E, 0x2F, 0xFFFF, 0);
@@ -742,7 +742,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0053(PLW *wk) {
+void Pattern10_0053(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         SA_Term(wk, 0x2E, 0x2F, 0x30, 0x8040);
@@ -758,7 +758,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0054(PLW *wk) {
+void Pattern10_0054(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         SA_Term(wk, 0xFFFF, 0xFFFF, 0x30, 0);
@@ -774,7 +774,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0055(PLW *wk) {
+void Pattern10_0055(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Hi_Jump_Attack_Term(wk, -0x7FA0, -0x7FD0, 8, 0x40, 0, -0x7FA0, 8, 0x20);
@@ -786,7 +786,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0056(PLW *wk) {
+void Pattern10_0056(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Command_Attack(wk, 8, 0x1C, 0xA, -1);
@@ -802,7 +802,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0057(PLW *wk) {
+void Pattern10_0057(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Search_Back_Term(wk, 0x70, 6, 0x12);
@@ -818,7 +818,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0058(PLW *wk) {
+void Pattern10_0058(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Search_Back_Term(wk, 0x70, 2, 0x11);
@@ -846,7 +846,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0059(PLW *wk) {
+void Pattern10_0059(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Search_Back_Term(wk, 0x70, 2, 0x11);
@@ -874,7 +874,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0060(PLW *wk) {
+void Pattern10_0060(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Search_Back_Term(wk, 0x70, 2, 0);
@@ -902,7 +902,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0061(PLW *wk) {
+void Pattern10_0061(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Search_Back_Term(wk, 0x70, 2, 0);
@@ -926,7 +926,7 @@ void Pattern10_0051(PLW *wk) {
     }
 }
 
-)void Pattern10_0062(PLW *wk) {
+void Pattern10_0062(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Hi_Jump_Attack_Term(wk, -0x7FA0, -0x7FC0, 8, 0x20, 0, -0x7FA0, 8, 0x200);
@@ -958,7 +958,7 @@ void Pattern10_0063(PLW *wk) {
     }
 }
 
-)void Pattern10_0064(PLW *wk) {
+void Pattern10_0064(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Normal_Attack(wk, 0xB, 0x10);
@@ -998,7 +998,7 @@ void Pattern10_0065(PLW *wk) {
     }
 }
 
-)void Pattern10_0066(PLW *wk) {
+void Pattern10_0066(PLW *wk) {
     switch (CP_Index[wk->wu.id][0]) {
     case 0:
         Com_Random_Select(wk, 6, 0x2D, 0x19, 0x10, 0x17, 0);
