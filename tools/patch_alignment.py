@@ -25,7 +25,9 @@ special_cases = {
     ("EFF00", ".rodata", 0): 16,
     ("knjsub", ".rodata", 0): 16,
     ("msgsub", ".rodata", 0): 16,
+    ("appear", ".rodata", 1): 16,
 
+    ("bg_data", ".data", 0): 16,
     ("PulPul", ".data", 0): 16,
     ("flps2vram", ".data", 0): 16,
     ("PulPul", ".data", 1): 16,
@@ -83,7 +85,7 @@ def alignments(path: Path) -> list[tuple[int, int]]:
         is_c_file = str(path).split(".")[-2] == "c"
 
         alignments: list[tuple[int, int]] = list()
-        
+
         # Current index of section among sections of this type.
         # .text -> 3 means this .text section is the 3rd .text section.
         section_indices = {
