@@ -15,8 +15,6 @@ s16 app_counter[] = {0, 0};
 s16 appear_work[] = {0, 0};
 s16 Appear_end;
 
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", appear_work_clear);
-
 void appear_work_clear(void) {
     Appear_end = 0;
     Appear_flag[0] = 0;
@@ -26,8 +24,6 @@ void appear_work_clear(void) {
     bg_stop = 0;
     bg_app_stop = 0;
 }
-
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", home_visitor_check);
 
 s32 home_visitor_check(PLW* wk) {
     s8 hv_type;
@@ -52,8 +48,6 @@ s32 home_visitor_check(PLW* wk) {
     return hv_type;
 }
 
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", appear_data_set);
-
 void appear_data_set(PLW* wk, APPEAR_DATA* dtbl) {
     if (wk->wu.id) {
         wk->wu.xyz[0].disp.pos = bg_w.bgw[1].pos_x_work - dtbl->hx;
@@ -74,57 +68,18 @@ void appear_data_set(PLW* wk, APPEAR_DATA* dtbl) {
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", appear_data_init_set);
 
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", appear_player);
-
 void appear_player(PLW* wk) {
-    void (*appear_jmp_tbl[42])() = {
-        appear_player,
-        Appear_00000,
-        Appear_01000,
-        Appear_03000,
-        Appear_04000,
-        Appear_05000,
-        Appear_06000,
-        Appear_07000,
-        Appear_08000,
-        Appear_09000,
-        Appear_10000,
-        Appear_11000,
-        Appear_12000,
-        Appear_13000,
-        Appear_14000,
-        Appear_15000,
-        Appear_16000,
-        Appear_17000,
-        Appear_18000,
-        Appear_19000,
-        Appear_20000,
-        Appear_21000,
-        Appear_22000,
-        Appear_23000,
-        Appear_24000,
-        Appear_25000,
-        Appear_26000,
-        Appear_28000,
-        Appear_29000,
-        animal_decide,
-        don_appear_check,
-        Appear_30000,
-        Appear_31000,
-        Appear_32000,
-        Appear_33000,
-        Appear_34000,
-        Appear_36000,
-        Appear_37000,
-        Appear_38000,
-        Appear_39000,
-        Appear_41000,
-        gouki_appear
+    void (*appear_jmp_tbl[42])(PLW* wk) = {
+        Appear_00000, Appear_01000, Appear_01000, Appear_03000, Appear_04000, Appear_05000,
+        Appear_06000, Appear_07000, Appear_08000, Appear_09000, Appear_10000, Appear_11000,
+        Appear_12000, Appear_13000, Appear_14000, Appear_15000, Appear_16000, Appear_17000,
+        Appear_18000, Appear_19000, Appear_20000, Appear_21000, Appear_22000, Appear_23000,
+        Appear_24000, Appear_25000, Appear_26000, Appear_06000, Appear_28000, Appear_29000,
+        Appear_30000, Appear_31000, Appear_32000, Appear_33000, Appear_34000, Appear_01000,
+        Appear_36000, Appear_37000, Appear_38000, Appear_39000, Appear_06000, Appear_41000
     };
     appear_jmp_tbl[(short)wk->wu.routine_no[4]](wk);
 }
-
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_00000);
 
 void Appear_00000(PLW* wk) {
     Appear_end++;
@@ -194,7 +149,7 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_040
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_05000);
 
-// void Appear_05000(WORK* wk) {
+// void Appear_05000(PLW *wk) {
 //     switch (wk->routine_no[3]) {
 //     case 0:
 //         wk->routine_no[3]++;
@@ -259,64 +214,62 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_050
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_06000);
 
-// INCLUDE_RODATA("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", appear_data);
-
 const APPEAR_DATA appear_data[] = {
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x0000, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x0100, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x0200, 0x0000 },
-    { 0x84FF, 0x0000, 0x84FF, 0x00, 0x01, 0x0300, 0x0C00 },
-    { 0x00FF, 0x9000, 0x00FF, 0x00, 0x01, 0x0400, 0x0000 },
-    { 0x2001, 0x0000, 0x2001, 0x01, 0x00, 0x0500, 0x0000 },
-    { 0x08FF, 0x0000, 0x08FF, 0x00, 0x01, 0x0600, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x0700, 0x0000 },
-    { 0xC2FF, 0x0000, 0xC2FF, 0x00, 0x01, 0x0800, 0x0000 },
-    { 0xA8FF, 0xC800, 0xA8FF, 0x00, 0x01, 0x0900, 0x1000 },
-    { 0x28FF, 0x0000, 0x20FF, 0x00, 0x01, 0x0A00, 0x1000 },
-    { 0x9AFF, 0x0000, 0x9AFF, 0x00, 0x01, 0x0100, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x0B00, 0x0000 },
-    { 0xEFFF, 0x0000, 0xEFFF, 0x00, 0x01, 0x0100, 0x0000 },
-    { 0xA8FF, 0x8001, 0xA8FF, 0x00, 0x01, 0x0D00, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x0E00, 0x0000 },
-    { 0x80FF, 0x0000, 0x80FF, 0x00, 0x01, 0x0F00, 0x0000 },
-    { 0xF0FE, 0x0000, 0xD0FE, 0x00, 0x01, 0x0C00, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x1000, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x1100, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x1500, 0x0000 },
-    { 0xD0FF, 0x0000, 0xD0FF, 0x00, 0x01, 0x1200, 0x0000 },
-    { 0x88FF, 0x0000, 0x88FF, 0x00, 0x01, 0x0100, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x0300, 0x1700 },
-    { 0x0001, 0x0000, 0x0001, 0x00, 0x01, 0x1400, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x1600, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x1700, 0x0000 },
-    { 0xA0FF, 0x0000, 0xA0FF, 0x00, 0x01, 0x1800, 0x0000 },
-    { 0xA0FF, 0x0000, 0xA0FF, 0x00, 0x01, 0x1900, 0x0000 },
-    { 0xA800, 0x5000, 0xA800, 0x00, 0x00, 0x1A00, 0x0000 },
-    { 0xF800, 0x0000, 0xF800, 0x00, 0x00, 0x1B00, 0x0000 },
-    { 0x90FF, 0x0000, 0x90FF, 0x00, 0x01, 0x1C00, 0x0000 },
-    { 0x91FF, 0x0000, 0x91FF, 0x00, 0x01, 0x0100, 0x0000 },
-    { 0xD0FF, 0x0000, 0xD0FF, 0x00, 0x01, 0x0300, 0x1200 },
-    { 0xA0FF, 0x0000, 0xA0FF, 0x00, 0x01, 0x0300, 0x1700 },
-    { 0xCBFF, 0x0000, 0xCBFF, 0x00, 0x01, 0x0300, 0x1500 },
-    { 0xCBFF, 0x0000, 0xCBFF, 0x00, 0x01, 0x0300, 0x1600 },
-    { 0xB8FF, 0x0000, 0xB8FF, 0x00, 0x01, 0x2600, 0x1400 },
-    { 0xACFF, 0x0000, 0xACFF, 0x00, 0x01, 0x0300, 0x1600 },
-    { 0xACFF, 0x0000, 0xACFF, 0x00, 0x01, 0x0300, 0x1600 },
-    { 0x00FF, 0x0000, 0x00FF, 0x00, 0x01, 0x1D00, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x1E00, 0x0000 },
-    { 0xC0FF, 0x0000, 0xC0FF, 0x00, 0x01, 0x1F00, 0x0000 },
-    { 0xFEFE, 0x0000, 0xFEFE, 0x00, 0x01, 0x2000, 0x0000 },
-    { 0x00FF, 0x0000, 0x00FF, 0x00, 0x01, 0x2100, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x2200, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x2300, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x0300, 0x1000 },
-    { 0xE8FF, 0x0000, 0xE8FF, 0x00, 0x01, 0x2400, 0x0000 },
-    { 0xE8FF, 0x0000, 0xE8FF, 0x00, 0x01, 0x2500, 0x0000 },
-    { 0x40FE, 0x0000, 0x40FE, 0x00, 0x01, 0x2700, 0x0000 },
-    { 0xB8FF, 0x0000, 0xB8FF, 0x00, 0x01, 0x0300, 0x1100 },
-    { 0x08FF, 0x0000, 0x08FF, 0x00, 0x01, 0x2800, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x2900, 0x0000 },
-    { 0xA8FF, 0x0000, 0xA8FF, 0x00, 0x01, 0x0300, 0x1100 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0000, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0001, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0002, 0x0000 },
+    { 0xFF84, 0x0000, 0xFF84, 0x00, 0x01, 0x0003, 0x000C },
+    { 0xFF00, 0x0090, 0xFF00, 0x00, 0x01, 0x0004, 0x0000 },
+    { 0x0120, 0x0000, 0x0120, 0x01, 0x00, 0x0005, 0x0000 },
+    { 0xFF08, 0x0000, 0xFF08, 0x00, 0x01, 0x0006, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0007, 0x0000 },
+    { 0xFFC2, 0x0000, 0xFFC2, 0x00, 0x01, 0x0008, 0x0000 },
+    { 0xFFA8, 0x00C8, 0xFFA8, 0x00, 0x01, 0x0009, 0x0010 },
+    { 0xFF28, 0x0000, 0xFF20, 0x00, 0x01, 0x000A, 0x0010 },
+    { 0xFF9A, 0x0000, 0xFF9A, 0x00, 0x01, 0x0001, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x000B, 0x0000 },
+    { 0xFFEF, 0x0000, 0xFFEF, 0x00, 0x01, 0x0001, 0x0000 },
+    { 0xFFA8, 0x0180, 0xFFA8, 0x00, 0x01, 0x000D, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x000E, 0x0000 },
+    { 0xFF80, 0x0000, 0xFF80, 0x00, 0x01, 0x000F, 0x0000 },
+    { 0xFEF0, 0x0000, 0xFED0, 0x00, 0x01, 0x000C, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0010, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0011, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0015, 0x0000 },
+    { 0xFFD0, 0x0000, 0xFFD0, 0x00, 0x01, 0x0012, 0x0000 },
+    { 0xFF88, 0x0000, 0xFF88, 0x00, 0x01, 0x0001, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0003, 0x0017 },
+    { 0x0100, 0x0000, 0x0100, 0x00, 0x01, 0x0014, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0016, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0017, 0x0000 },
+    { 0xFFA0, 0x0000, 0xFFA0, 0x00, 0x01, 0x0018, 0x0000 },
+    { 0xFFA0, 0x0000, 0xFFA0, 0x00, 0x01, 0x0019, 0x0000 },
+    { 0x00A8, 0x0050, 0x00A8, 0x00, 0x00, 0x001A, 0x0000 },
+    { 0x00F8, 0x0000, 0x00F8, 0x00, 0x00, 0x001B, 0x0000 },
+    { 0xFF90, 0x0000, 0xFF90, 0x00, 0x01, 0x001C, 0x0000 },
+    { 0xFF91, 0x0000, 0xFF91, 0x00, 0x01, 0x0001, 0x0000 },
+    { 0xFFD0, 0x0000, 0xFFD0, 0x00, 0x01, 0x0003, 0x0012 },
+    { 0xFFA0, 0x0000, 0xFFA0, 0x00, 0x01, 0x0003, 0x0017 },
+    { 0xFFCB, 0x0000, 0xFFCB, 0x00, 0x01, 0x0003, 0x0015 },
+    { 0xFFCB, 0x0000, 0xFFCB, 0x00, 0x01, 0x0003, 0x0016 },
+    { 0xFFB8, 0x0000, 0xFFB8, 0x00, 0x01, 0x0026, 0x0014 },
+    { 0xFFAC, 0x0000, 0xFFAC, 0x00, 0x01, 0x0003, 0x0016 },
+    { 0xFFAC, 0x0000, 0xFFAC, 0x00, 0x01, 0x0003, 0x0016 },
+    { 0xFF00, 0x0000, 0xFF00, 0x00, 0x01, 0x001D, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x001E, 0x0000 },
+    { 0xFFC0, 0x0000, 0xFFC0, 0x00, 0x01, 0x001F, 0x0000 },
+    { 0xFEFE, 0x0000, 0xFEFE, 0x00, 0x01, 0x0020, 0x0000 },
+    { 0xFF00, 0x0000, 0xFF00, 0x00, 0x01, 0x0021, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0022, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0023, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0003, 0x0010 },
+    { 0xFFE8, 0x0000, 0xFFE8, 0x00, 0x01, 0x0024, 0x0000 },
+    { 0xFFE8, 0x0000, 0xFFE8, 0x00, 0x01, 0x0025, 0x0000 },
+    { 0xFE40, 0x0000, 0xFE40, 0x00, 0x01, 0x0027, 0x0000 },
+    { 0xFFB8, 0x0000, 0xFFB8, 0x00, 0x01, 0x0003, 0x0011 },
+    { 0xFF08, 0x0000, 0xFF08, 0x00, 0x01, 0x0028, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0029, 0x0000 },
+    { 0xFFA8, 0x0000, 0xFFA8, 0x00, 0x01, 0x0003, 0x0011 },
 };
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_07000);
@@ -325,163 +278,155 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_080
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", sean_appear_check);
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_09000);
+void Appear_09000(PLW* wk) {
+    switch (wk->wu.routine_no[3]) {
+    case 0:
+        wk->wu.routine_no[3]++;
+        wk->wu.disp_flag = 1;
+        set_char_move_init(&wk->wu, 9, 0x10);
+        bg_app_stop = 1;
+        return;
 
-// void Appear_09000(PLW* wk) {
-//     switch (wk->wu.routine_no[3]) {
-//     case 0:
-//         wk->wu.routine_no[3]++;
-//         wk->wu.disp_flag = 1;
-//         set_char_move_init(&wk->wu, 9, 0x10);
-//         bg_app_stop = 1;
-//         return;
+    case 1:
+        char_move(&wk->wu);
+        if (wk->wu.cg_type == 0xFF) {
+            wk->wu.routine_no[3]++;
+            Appear_free[wk->wu.id] = 1;
+            app_counter[wk->wu.id] = 0x20;
+            return;
+        }
+        break;
 
-//     case 1:
-//         char_move(&wk->wu);
-//         if (wk->wu.cg_type == 0xFF) {
-//             wk->wu.routine_no[3]++;
-//             Appear_free[wk->wu.id] = 1;
-//             app_counter[wk->wu.id] = 0x20;
-//             return;
-//         }
-//         break;
+    case 2:
+        (*(&app_counter[wk->wu.id]))--;
+        if (*(&app_counter[wk->wu.id]) < 0) {
+            wk->wu.routine_no[3]++;
+            set_char_move_init(&wk->wu, 9, 0x11);
+            wk->wu.mvxy.a[1].sp = -0xB0000;
+            wk->wu.mvxy.d[1].sp = -0x6000;
+            return;
+        }
+        break;
 
-//     case 2:
-//         (*(&app_counter[wk->wu.id]))--;
-//         if (*(&app_counter[wk->wu.id]) < 0) {
-//             wk->wu.routine_no[3]++;
-//             set_char_move_init(&wk->wu, 9, 0x11);
-//             wk->wu.mvxy.a[1].sp = -0xB0000;
-//             wk->wu.mvxy.d[1].sp = -0x6000;
-//             return;
-//         }
-//         break;
+    case 3:
+        char_move(&wk->wu);
+        add_y_sub(&wk->wu);
+        if (wk->wu.xyz[1].disp.pos <= 0) {
+            wk->wu.routine_no[3]++;
+            wk->wu.xyz[1].cal = 0;
+            set_char_move_init(&wk->wu, 9, 0x12);
+            Appear_end++;
+            return;
+        }
+        break;
 
-//     case 3:
-//         char_move(&wk->wu);
-//         add_y_sub(&wk->wu);
-//         if (wk->wu.xyz[1].disp.pos <= 0) {
-//             wk->wu.routine_no[3]++;
-//             wk->wu.xyz[1].cal = 0;
-//             set_char_move_init(&wk->wu, 9, 0x12);
-//             Appear_end++;
-//             return;
-//         }
-//         break;
-
-//     case 4:
-//         char_move(&wk->wu);
-//         if (wk->wu.cg_type == 0xFF) {
-//             wk->wu.routine_no[2] = 1;
-//             wk->wu.routine_no[3] = 0;
-//         }
-//         break;
-//     }
-// }
+    case 4:
+        char_move(&wk->wu);
+        if (wk->wu.cg_type == 0xFF) {
+            wk->wu.routine_no[2] = 1;
+            wk->wu.routine_no[3] = 0;
+        }
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_10000);
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_11000);
+void Appear_11000(PLW* wk) {
+    switch (wk->wu.routine_no[3]) {
+    case 0:
+        wk->wu.routine_no[3]++;
+        bg_app_stop = 1;
+        *&app_counter[wk->wu.id] = 0x50;
+        set_char_move_init(&wk->wu, 0, 0);
+        break;
 
-// void Appear_11000(PLW* wk) {
-//     switch (wk->wu.routine_no[3]) {
-//     case 0:
-//         wk->wu.routine_no[3]++;
-//         bg_app_stop = 1;
-//         *&app_counter[wk->wu.id] = 0x50;
-//         set_char_move_init(&wk->wu, 0, 0);
-//         break;
-
-//     case 1:
-//         char_move(&wk->wu);
-//         (*&app_counter[wk->wu.id])--;
-//         if (*&app_counter[wk->wu.id] < 0) {
-//             wk->wu.routine_no[2] = 1;
-//             wk->wu.routine_no[3] = 1;
-//             Appear_end++;
-//             if (Demo_Flag != 0) {
-//                 SsRequestPan(0x2A9, 0x40, 0x40, 0, 2);
-//             }
-//         }
-//     }
-// }
+    case 1:
+        char_move(&wk->wu);
+        (*&app_counter[wk->wu.id])--;
+        if (*&app_counter[wk->wu.id] < 0) {
+            wk->wu.routine_no[2] = 1;
+            wk->wu.routine_no[3] = 1;
+            Appear_end++;
+            if (Demo_Flag != 0) {
+                SsRequestPan(0x2A9, 0x40, 0x40, 0, 2);
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_12000);
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_13000);
+void Appear_13000(PLW* wk) {
+    switch (wk->wu.routine_no[3]) {
+    case 0:
+        wk->wu.routine_no[3] += 1;
+        wk->wu.disp_flag = 1;
+        bg_app_stop = 1;
+        set_char_move_init2(&wk->wu, 9, 0x3D, 4, 0);
+        wk->wu.mvxy.a[1].sp = 0x78000;
+        wk->wu.mvxy.d[1].sp = -0x3000;
+        wk->wu.kage_flag = 0;
+        return;
 
-// void Appear_13000(PLW* wk) {
-//     switch (wk->wu.routine_no[3]) {
-//     case 0:
-//         wk->wu.routine_no[3] += 1;
-//         wk->wu.disp_flag = 1;
-//         bg_app_stop = 1;
-//         set_char_move_init2(&wk->wu, 9, 0x3D, 4, 0);
-//         wk->wu.mvxy.a[1].sp = 0x78000;
-//         wk->wu.mvxy.d[1].sp = -0x3000;
-//         wk->wu.kage_flag = 0;
-//         return;
+    case 1:
+        // Do nothing
 
-//     case 1:
-//         // Do nothing
+    case 2:
+        char_move(&wk->wu);
+        add_y_sub(&wk->wu);
+        if (wk->wu.xyz[1].disp.pos < 0) {
+            wk->wu.routine_no[3] += 1;
+            set_char_move_init(&wk->wu, 9, 0x3E);
+            wk->wu.xyz[1].cal = 0;
+            Appear_end += 1;
+            return;
+        }
+        break;
 
-//     case 2:
-//         char_move(&wk->wu);
-//         add_y_sub(&wk->wu);
-//         if (wk->wu.xyz[1].disp.pos < 0) {
-//             wk->wu.routine_no[3] += 1;
-//             set_char_move_init(&wk->wu, 9, 0x3E);
-//             wk->wu.xyz[1].cal = 0;
-//             Appear_end += 1;
-//             return;
-//         }
-//         break;
-
-//     case 3:
-//         char_move(&wk->wu);
-//         if (wk->wu.cg_type == 0xFF) {
-//             wk->wu.routine_no[2] = 1;
-//             wk->wu.routine_no[3] = 0;
-//         }
-//         break;
-//     }
-// }
+    case 3:
+        char_move(&wk->wu);
+        if (wk->wu.cg_type == 0xFF) {
+            wk->wu.routine_no[2] = 1;
+            wk->wu.routine_no[3] = 0;
+        }
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_14000);
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_15000);
+void Appear_15000(PLW* wk) {
+    switch (wk->wu.routine_no[3]) {
+    case 0:
+        wk->wu.routine_no[3] += 1;
+        bg_app_stop = 1;
+        wk->wu.disp_flag = 1;
+        set_char_move_init(&wk->wu, 9, 8);
+        effect_97_init(&wk->wu);
+        return;
 
-// void Appear_15000(PLW* wk) {
-//     switch (wk->wu.routine_no[3]) {
-//     case 0:
-//         wk->wu.routine_no[3] += 1;
-//         bg_app_stop = 1;
-//         wk->wu.disp_flag = 1;
-//         set_char_move_init(&wk->wu, 9, 8);
-//         effect_97_init(&wk->wu);
-//         return;
+    case 1:
+        char_move(&wk->wu);
+        switch (wk->wu.cg_type) {
+        case 0x2:
+            wk->wu.cg_type = 0;
+            Sound_SE(0x10A);
+            return;
 
-//     case 1:
-//         char_move(&wk->wu);
-//         switch (wk->wu.cg_type) {
-//         case 0x2:
-//             wk->wu.cg_type = 0;
-//             Sound_SE(0x10A);
-//             return;
+        case 0x3:
+            wk->wu.cg_type = 0;
+            Sound_SE(0x10B);
+            return;
 
-//         case 0x3:
-//             wk->wu.cg_type = 0;
-//             Sound_SE(0x10B);
-//             return;
-
-//         case 0xFF:
-//             wk->wu.routine_no[2] = 1;
-//             wk->wu.routine_no[3] = 0;
-//             Appear_end += 1;
-//             break;
-//         }
-//     }
-// }
+        case 0xFF:
+            wk->wu.routine_no[2] = 1;
+            wk->wu.routine_no[3] = 0;
+            Appear_end += 1;
+            break;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_16000);
 
@@ -560,8 +505,6 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_240
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_25000);
 
-// INCLUDE_RODATA("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", smoke_check);
-
 const s16 smoke_check[] = {0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0};
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_26000);
@@ -585,8 +528,6 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_330
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_34000);
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", Appear_36000);
-
-// INCLUDE_RODATA("asm/anniversary/nonmatchings/sf33rd/Source/Game/appear", animal_decide_tbl);
 
 const u8 animal_decide_tbl[] = {0, 1, 2, 3, 4, 5, 0, 2, 0, 1, 2, 3, 4, 5, 0, 0};
 
