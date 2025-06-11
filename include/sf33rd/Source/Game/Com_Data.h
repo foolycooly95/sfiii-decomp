@@ -3,9 +3,9 @@
 
 #include "types.h"
 
-extern const s16 Com_Vital_Unit_Data[20][4][12]; // size: 0x780, address: 0x46BCF0
-extern const s16 Area_Unit_Data[20][3]; // size: 0x78, address: 0x4FC5B0
-extern const s16 Shell_Area_Unit_Data[20][3]; // size: 0x78, address: 0x4FC630
+extern s16 Com_Vital_Unit_Data[20][4][12]; // size: 0x780, address: 0x46BCF0
+extern s16 Area_Unit_Data[20][3]; // size: 0x78, address: 0x4FC5B0
+extern s16 Shell_Area_Unit_Data[20][3]; // size: 0x78, address: 0x4FC630
 
 extern const s8 Combo_Speed_Unit_Data[20][20][32]; // size: 0x3200, address: 0x4FC6B0
 extern const s8 Reflection_Speed_Unit_Data[20][20][32]; // size: 0x3200, address: 0x4FF8B0
