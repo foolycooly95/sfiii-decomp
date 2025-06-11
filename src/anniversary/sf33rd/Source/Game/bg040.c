@@ -6,7 +6,7 @@
 #include "sf33rd/Source/Game/PLCNT.h"
 #include "sf33rd/Source/Game/WORK_SYS.h"
 
-void BG040(void) {
+void BG040() {
     bgw_ptr = &bg_w.bgw[1];
     bg0402();
     bgw_ptr = bg_w.bgw;
@@ -17,8 +17,8 @@ void BG040(void) {
 }
 
 void bg0401() {
-  void (* bg0401_jmp[3])() = { bg0401_init00, bg0401_init01, bg_move_common };
-  bg0401_jmp[bgw_ptr->r_no_0]();
+    void (* bg0401_jmp[3])() = { bg0401_init00, bg0401_init01, bg_move_common };
+    bg0401_jmp[bgw_ptr->r_no_0]();
 }
 
 void bg0401_init00() {
@@ -37,8 +37,8 @@ void bg0401_init01() {
 }
 
 void bg0402() {
-  void (* bg0402_jmp[3])() = { bg0402_init00, bg0402_init01, bg_base_move_common };
-  bg0402_jmp[bgw_ptr->r_no_0]();
+    void (* bg0402_jmp[3])() = { bg0402_init00, bg0402_init01, bg_base_move_common };
+    bg0402_jmp[bgw_ptr->r_no_0]();
 }
 
 void bg0402_init00() {

@@ -19,8 +19,8 @@ void BG000() {
 }
 
 void bg0001() {
-  void (* bg0002_jmp[3])() = { bg0001_init00, bg0000_demo, bg_base_move_common };
-  bg0002_jmp[bgw_ptr->r_no_0]();
+    void (* bg0002_jmp[3])() = { bg0001_init00, bg0000_demo, bg_base_move_common };
+    bg0002_jmp[bgw_ptr->r_no_0]();
 }
 
 void bg0001_init00() {
@@ -60,8 +60,8 @@ void bg0001_init00() {
 }
 
 void bg0000() {
-  void (* bg0000_jmp[3])() = { bg0000_init00, bg0000_demo, bg_move_common };
-  bg0000_jmp[bgw_ptr->r_no_0]();
+    void (* bg0000_jmp[3])() = { bg0000_init00, bg0000_demo, bg_move_common };
+    bg0000_jmp[bgw_ptr->r_no_0]();
 }
 
 void bg0000_init00() {
