@@ -7,7 +7,7 @@
 #include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/WORK_SYS.h"
 
-void BG010(void) {
+void BG010() {
     bgw_ptr = &bg_w.bgw[1];
     bg0102();
     bgw_ptr = bg_w.bgw;
@@ -24,7 +24,7 @@ void bg0101() {
   bg0101_jmp[bgw_ptr->r_no_0]();
 }
 
-void bg0101_init00(void) {
+void bg0101_init00() {
     bgw_ptr->r_no_0++;
     bgw_ptr->old_pos_x = bgw_ptr->xy[0].disp.pos = bgw_ptr->pos_x_work = 0x200;
     bgw_ptr->hos_xy[0].disp.pos = bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
@@ -40,7 +40,7 @@ void bg0102() {
   bg0102_jmp[bgw_ptr->r_no_0]();
 }
 
-void bg0102_init00(void) {
+void bg0102_init00() {
     bgw_ptr->r_no_0++;
     bgw_ptr->old_pos_x = bgw_ptr->xy[0].disp.pos = bgw_ptr->pos_x_work = 0x200;
     bgw_ptr->hos_xy[0].cal = bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
