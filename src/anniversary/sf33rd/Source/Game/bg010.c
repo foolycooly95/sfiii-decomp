@@ -7,8 +7,6 @@
 #include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/WORK_SYS.h"
 
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg010", BG010);
-
 void BG010(void) {
     bgw_ptr = &bg_w.bgw[1];
     bg0102();
@@ -21,25 +19,33 @@ void BG010(void) {
     Bg_Family_Set();
 }
 
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg010", bg0101);
-
 void bg0101() {
   void (* bg0101_jmp[2])() = { bg0101_init00, bg_move_common };
   bg0101_jmp[bgw_ptr->r_no_0]();
 }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg010", bg0101_init00);
-
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg010", bg0102);
+void bg0101_init00(void) {
+    bgw_ptr->r_no_0++;
+    bgw_ptr->old_pos_x = bgw_ptr->xy[0].disp.pos = bgw_ptr->pos_x_work = 0x200;
+    bgw_ptr->hos_xy[0].disp.pos = bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
+    bgw_ptr->zuubun = 0;
+    effect_07_init();
+    effect_05_init();
+    effect_06_init();
+    effect_11_init();
+}
 
 void bg0102() {
   void (* bg0102_jmp[2])() = { bg0102_init00, bg_base_move_common };
   bg0102_jmp[bgw_ptr->r_no_0]();
 }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg010", bg0102_init00);
-
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg010", bg0103);
+void bg0102_init00(void) {
+    bgw_ptr->r_no_0++;
+    bgw_ptr->old_pos_x = bgw_ptr->xy[0].disp.pos = bgw_ptr->pos_x_work = 0x200;
+    bgw_ptr->hos_xy[0].cal = bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
+    bgw_ptr->zuubun = 0;
+}
 
 void bg0103() {
     switch (bgw_ptr->r_no_0) {
