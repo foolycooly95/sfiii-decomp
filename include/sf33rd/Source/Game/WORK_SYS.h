@@ -21,6 +21,7 @@ extern BG_POS fm_pos[8];               // size: 0x80, address: 0x579B20
 extern BG_POS bg_pos[8];               // size: 0x80, address: 0x579BA0
 extern u8 Screen_PAL;                  // size: 0x1, address: 0x579C20
 extern u16 PLsw[2][2];                 // size: 0x8, address: 0x579C28
+extern s8 Gill_Appear_Flag;            // size: 0x1, address: 0x579C30
 extern u32 Interrupt_Timer;            // size: 0x4, address: 0x579C34
 extern u16 p4sw_buff;                  // size: 0x2, address: 0x579C38
 extern u16 p3sw_buff;                  // size: 0x2, address: 0x579C3C
@@ -52,6 +53,8 @@ extern u16 p1sw_0;                     // size: 0x2, address: 0x579CC4
 extern struct _VM_W vm_w;              // size: 0x6C, address: 0x579D20
 extern struct _SYSTEM_W sys_w;         // size: 0x1C, address: 0x579D90
 extern u32 current_task_num;           // size: 0x4, address: 0x579DAC
+
+
 
 extern struct _SAVE_W save_w[6];                  // size: 0xC30, address: 0x6B4E80
 extern Permission permission_player[6];           // size: 0x90, address: 0x6B5AB0

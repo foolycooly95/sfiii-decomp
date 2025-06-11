@@ -4,10 +4,12 @@
 #include "structs.h"
 #include "types.h"
 
+void sync_fam_set3(s16 my_fam);
 void win_lose_work_clear();
 void disp_pos_trans_entry(WORK_Other *ewk);
 void add_y_sub(WORK_Other *ewk);
 void disp_pos_trans_entry5(WORK_Other *ewk);
 void add_x_sub(WORK_Other *ewk);
+
 
 #endif
