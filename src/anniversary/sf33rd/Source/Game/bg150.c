@@ -19,8 +19,8 @@ void BG150() {
 }
 
 void bg1501() {
-  void (* bg1501_jmp[2])() = { bg1501_init00, bg_move_common };
-  bg1501_jmp[bgw_ptr->r_no_0]();
+    void (* bg1501_jmp[2])() = { bg1501_init00, bg_move_common };
+    bg1501_jmp[bgw_ptr->r_no_0]();
 }
 
 void bg1501_init00() {
@@ -31,8 +31,8 @@ void bg1501_init00() {
 }
 
 void bg1502() {
-  void (* bg1502_jmp[2])() = { bg1502_init00, bg_base_move_common };
-  bg1502_jmp[bgw_ptr->r_no_0]();
+    void (* bg1502_jmp[2])() = { bg1502_init00, bg_base_move_common };
+    bg1502_jmp[bgw_ptr->r_no_0]();
 }
 
 void bg1502_init00() {
