@@ -4,9 +4,10 @@
 #include "sf33rd/Source/Game/bg_data.h"
 #include "sf33rd/Source/Game/bg_sub.h"
 #include "sf33rd/Source/Game/PLCNT.h"
+#include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/WORK_SYS.h"
 
-void BG140(void) {
+void BG140() {
     bgw_ptr = &bg_w.bgw[1];
     bg1401();
     bgw_ptr = bg_w.bgw;

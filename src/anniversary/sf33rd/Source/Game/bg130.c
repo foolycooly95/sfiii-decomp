@@ -4,6 +4,7 @@
 #include "sf33rd/Source/Game/bg_data.h"
 #include "sf33rd/Source/Game/bg_sub.h"
 #include "sf33rd/Source/Game/PLCNT.h"
+#include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/WORK_SYS.h"
 
 void BG130() {
@@ -19,8 +20,8 @@ void BG130() {
 }
 
 void bg1301() {
-  void (* bg1301_jmp[2])() = { bg1301_init00, bg_base_move_common };
-  bg1301_jmp[bgw_ptr->r_no_0]();
+    void (* bg1301_jmp[2])() = { bg1301_init00, bg_base_move_common };
+    bg1301_jmp[bgw_ptr->r_no_0]();
 }
 
 void bg1301_init00() {
@@ -32,8 +33,8 @@ void bg1301_init00() {
 }
 
 void bg1300() {
-  void (* bg1300_jmp[2])() = { bg1300_init00, bg_move_common };
-  bg1300_jmp[bgw_ptr->r_no_0]();
+    void (* bg1300_jmp[2])() = { bg1300_init00, bg_move_common };
+    bg1300_jmp[bgw_ptr->r_no_0]();
 }
 
 void bg1300_init00() {

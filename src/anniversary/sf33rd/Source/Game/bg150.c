@@ -4,6 +4,7 @@
 #include "sf33rd/Source/Game/bg_data.h"
 #include "sf33rd/Source/Game/bg_sub.h"
 #include "sf33rd/Source/Game/PLCNT.h"
+#include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/WORK_SYS.h"
 
 void BG150() {
@@ -51,4 +52,26 @@ void bg1502_init00() {
     effect_85_init();
 }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg150", bg1502_sync_common);
+void bg1502_sync_common() {
+    switch (bgw_ptr->r_no_0) {
+    case 0:
+        bgw_ptr->r_no_0++;
+        bgw_ptr->fam_no = 2;
+        bgw_ptr->old_pos_x = bgw_ptr->xy[0].disp.pos = bgw_ptr->pos_x_work = 0x200;
+        bgw_ptr->hos_xy[0].cal = bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
+        bgw_ptr->zuubun = 0;
+        bgw_ptr->y_limit = bgw_ptr->y_limit2 = 0xF0;
+        bgw_ptr->pos_y_work = 0;
+        bgw_ptr->xy[1].disp.pos = 0;
+        bgw_ptr->speed_x = 0xF000;
+        bgw_ptr->speed_y = 0xF000;
+        sync_fam_set3(bgw_ptr->fam_no);
+        break;
+
+    case 1:
+        bg_x_move_check();
+        bg_y_move_check();
+        sync_fam_set3(bgw_ptr->fam_no);
+        break;
+    }
+}
