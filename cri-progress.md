@@ -457,12 +457,12 @@ If you don't see a function in this list it doesn't need to be decompiled.
 - [ ] dvCiSetRdMode
 - [ ] dvCiSetRootDir
 
-### htci_sub
+### htci_sub ✅
 
-- [ ] htci_is_inc_colon
-- [ ] htci_is_bgn_host
-- [ ] htci_conv_fname
-- [ ] htci_load_flist
+- [x] htci_is_inc_colon
+- [x] htci_is_bgn_host
+- [x] htci_conv_fname
+- [x] htci_load_flist
 
 ### lsc ✅
 
