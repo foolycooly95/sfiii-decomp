@@ -25,7 +25,9 @@ special_cases = {
     ("EFF00", ".rodata", 0): 16,
     ("knjsub", ".rodata", 0): 16,
     ("msgsub", ".rodata", 0): 16,
+    ("appear", ".rodata", 1): 16,
 
+    ("bg_data", ".data", 0): 16,
     ("PulPul", ".data", 0): 16,
     ("flps2vram", ".data", 0): 16,
     ("PulPul", ".data", 1): 16,

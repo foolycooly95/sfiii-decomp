@@ -112,6 +112,7 @@ extern u8 E_Number[2][4];          // size: 0x8, address: 0x57A2B8
 extern s8 Request_Disp_Rank[2][4]; // size: 0x8, address: 0x57A2E0
 extern s8 Rank_In[2][4];           // size: 0x8, address: 0x57A2E8
 extern s8 Suicide[8];              // size: 0x8, address: 0x57A2F8
+extern u8 Introduce_Boss[2][2];    // size: 0x4, address: 0x57A300
 extern u8 Continue_Cut[2];         // size: 0x2, address: 0x57A304
 extern s8 Last_Selected_EM[2];     // size: 0x2, address: 0x57A30C
 extern u8 WGJ_Target;              // size: 0x1, address: 0x57A338
@@ -123,7 +124,7 @@ extern u8 SC_No[4];                // size: 0x4, address: 0x57A388
 extern u8 Bonus_Type;              // size: 0x1, address: 0x57A3B4
 extern s8 Stock_Com_Arts[2];       // size: 0x2, address: 0x57A3C4
 extern u8 End_PL;                  // size: 0x1, address: 0x57A3C8
-extern s8 EXE_obroll;              // size: 0x1, address 0x57A3CC
+extern s8 EXE_obroll;              // size: 0x1, address: 0x57A3CC
 extern s8 Stage_Cheap_Finish[2];   // size: 0x2, address: 0x57A3D0
 extern s8 Stage_Perfect_Finish[2]; // size: 0x2, address: 0x57A3D4
 extern s8 Stage_Lost_Round[2];     // size: 0x2, address: 0x57A3D8
