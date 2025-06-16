@@ -4,7 +4,13 @@
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", check_cg_zoom);
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_chase_move);
+#else
+void bg_chase_move() {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", chase_start_check);
 
@@ -38,19 +44,49 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", scr_12_22)
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_base_x_move_sub);
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_base_x_move_check);
+#else
+void bg_base_x_move_check() {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", remake_x_mvstep);
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", Bg_Y_Sitei);
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_base_y_move_check);
+#else
+void bg_base_y_move_check() {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_x_move_check);
+#else
+void bg_x_move_check() {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_y_move_check);
+#else
+void bg_y_move_check() {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", zoom_ud_check);
+#else
+void zoom_ud_check() {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", suzi_offset_set);
 
@@ -64,7 +100,13 @@ void suzi_sync_pos_set(WORK_Other *ewk) {
 }
 #endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", Bg_Family_Set);
+#else
+void Bg_Family_Set() {
+    not_implemented(__func__);
+}
+#endif
 
 #if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", Bg_Family_Set_appoint);
@@ -74,9 +116,21 @@ void Bg_Family_Set_appoint(s32 num_of_bg) {
 }
 #endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", Bg_Family_Set_2);
+#else
+void Bg_Family_Set_2() {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", Bg_Family_Set_2_appoint);
+#else
+void Bg_Family_Set_2_appoint(s32 num_of_bg) {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", ake_Family_Set2);
 
@@ -88,9 +142,21 @@ void bg_pos_hosei_sub2(s16 bg_no) {
 }
 #endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_pos_hosei_sub3);
+#else
+void bg_pos_hosei_sub3(s16 bg_no) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_pos_hosei2);
+#else
+void bg_pos_hosei2() {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", get_center_position);
 
@@ -112,9 +178,21 @@ void compel_bg_init_position() {
 }
 #endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_base_move_common);
+#else
+void bg_base_move_common() {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_move_common);
+#else
+void bg_move_common() {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", bg_initialize);
 
