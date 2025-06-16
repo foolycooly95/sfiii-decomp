@@ -44,6 +44,7 @@ special_cases = {
     ("eff06", ".sdata", 0): 16,
     ("EFF09", ".sdata", 0): 16,
     ("EFF22", ".rodata", 0): 16,
+    ("EFF26", ".sdata", 0): 16,
     ("EFF48_more_sdata", ".sdata", 0): 16,
     ("sel_pl", ".sdata", 0): 16,
     ("SpuMap", ".sdata", 0): 4,
