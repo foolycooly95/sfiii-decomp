@@ -4,7 +4,7 @@
 #include "sf33rd/Source/Game/bg_data.h"
 #include "sf33rd/Source/Game/bg_sub.h"
 #include "sf33rd/Source/Game/eff05.h"
-// #include "sf33rd/Source/Game/EFF24.h"
+#include "sf33rd/Source/Game/EFF24.h"
 // #include "sf33rd/Source/Game/EFF44.h"
 // #include "sf33rd/Source/Game/EFF60.h"
 #include "sf33rd/Source/Game/PLCNT.h"
