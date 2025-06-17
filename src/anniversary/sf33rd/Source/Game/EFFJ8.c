@@ -22,7 +22,13 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_l
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_l_move_4);
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_l_move);
+#else
+void dragonfly_l_move(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_r_move_0);
 
@@ -34,9 +40,21 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_r
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_r_move_4);
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_r_move);
+#else
+void dragonfly_r_move(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_move_0000);
+#else
+void dragonfly_move_0000(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 const s16 effj8_timer_tbl[8] = {
     0x003c, 0x0078, 0x00b4, 0x005a, 0x0096, 0x001e, 0x00dc, 0x00a0
@@ -46,11 +64,29 @@ const s16 effj8_y_tbl[8] = {
     0x0080, 0x0050, 0x0060, 0x00a0, 0x00b0, 0x0070, 0x0090, 0x00a8
 };
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_move_0001);
+#else
+void dragonfly_move_0001(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_move_0004);
+#else
+void dragonfly_move_0004(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_move_0005);
+#else
+void dragonfly_move_0005(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFJ8", dragonfly_stop_timer);
 

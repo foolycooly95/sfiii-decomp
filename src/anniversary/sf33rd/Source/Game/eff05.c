@@ -2,7 +2,11 @@
 #include "common.h"
 #include "sf33rd/Source/Game/aboutspr.h"
 #include "sf33rd/Source/Game/bg.h"
+#include "sf33rd/Source/Game/bg_sub.h"
+#include "sf33rd/Source/Game/CHARSET.h"
 #include "sf33rd/Source/Game/EFFECT.h"
+#include "sf33rd/Source/Game/ta_sub.h"
+#include "sf33rd/Source/Game/texcash.h"
 
 u32 *char_add[22] = {
     (u32 *)0x484ff0, (u32 *)0x488ad8, (u32 *)0x487060, (u32 *)0x4865b0, (u32 *)0x47e548, (u32 *)0x488570,

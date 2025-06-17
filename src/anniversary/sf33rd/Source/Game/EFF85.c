@@ -1,6 +1,7 @@
 #include "sf33rd/Source/Game/EFF85.h"
 #include "common.h"
 #include "sf33rd/Source/Game/SLOWF.h"
+#include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/workuser.h"
 
 void effect_85_move(WORK_Other *ewk) {
@@ -27,53 +28,71 @@ void eff85_0100(WORK_Other* ewk) {
     disp_pos_trans_entry(ewk);
 }
 
-void eff85_1000(WORK_Other* ewk) {
-    switch (ewk->wu.routine_no[2]) {
-    case 0:
-        ewk->wu.routine_no[2]++;
-        ewk->wu.disp_flag = 1;
-
-        if (ewk->wu.old_rno[0]) {
-            set_char_move_init(&ewk->wu, 0, 0x2C);
-        } else {
-            set_char_move_init(&ewk->wu, 0, 0x1C);
-        }
-
-        ewk->wu.old_rno[0]++;
-        ewk->wu.old_rno[0] &= 1;
-        ewk->wu.xyz[0].cal = 0x01EB0000;
-        ewk->wu.xyz[1].cal = 0x2C0000;
-        break;
-
-    case 1:
-        if (swallow_sprize_check(ewk) != 0) {
-            char_move(&ewk->wu);
-
-            if (ewk->wu.cg_type == 0xFF) {
-                ewk->wu.routine_no[1]++;
-                ewk->wu.routine_no[2] = 0;
-            }
-        }
-
-        break;
-    }
+#if defined(TARGET_PS2)
+INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", eff85_1000);
+#else
+void eff85_1000(WORK_Other *ewk) {
+    not_implemented(__func__);
 }
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", eff85_common);
+#else
+void eff85_common(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", eff85_3000);
+#else
+void eff85_3000(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", eff85_5000);
+#else
+void eff85_5000(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", eff85_7000);
+#else
+void eff85_7000(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", eff85_8000);
+#else
+void eff85_8000(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", eff85_9000);
+#else
+void eff85_9000(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", swallow_sprize_check);
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", eff85_0200);
+#else
+void eff85_0200(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 #if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF85", effect_85_init);

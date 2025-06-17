@@ -11,15 +11,45 @@ void (* eff25_jp_tbl[10])(WORK_Other *ewk) = {
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF25", effect_25_move);
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF25", eff25_00);
+#else
+void eff25_00(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF25", eff25_02);
+#else
+void eff25_02(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF25", eff25_04);
+#else
+void eff25_04(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF25", eff25_06);
+#else
+void eff25_06(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF25", eff25_08);
+#else
+void eff25_08(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF25", eff25_char_set);
 

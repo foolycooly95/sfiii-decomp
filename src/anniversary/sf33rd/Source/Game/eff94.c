@@ -1,10 +1,17 @@
 #include "sf33rd/Source/Game/eff94.h"
 #include "common.h"
+#include "sf33rd/Source/Game/aboutspr.h"
+#include "sf33rd/Source/Game/CHARSET.h"
+#include "sf33rd/Source/Game/EFFECT.h"
 #include "sf33rd/Source/Game/eff05.h"
 #include "sf33rd/Source/Game/SLOWF.h"
+#include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/workuser.h"
 
 void effect_94_move(WORK_Other* ewk) {
+    #if defined(TARGET_PS2)
+        void set_char_move_init(WORK * wk, s16 koc, s32 index);
+    #endif
     void (* const eff94_move_jp[5])(WORK_Other *) = {
         eff94_0000, eff94_1000, eff94_2000, eff94_3000, eff94_4000,
     };
@@ -28,15 +35,27 @@ void effect_94_move(WORK_Other* ewk) {
         break;
 
     default:
-        all_cgps_put_back(ewk);
-        push_effect_work(ewk);
+        all_cgps_put_back(&ewk->wu);
+        push_effect_work(&ewk->wu);
         break;
     }
 }
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_0000);
+#else
+void eff94_0000(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_1000);
+#else
+void eff94_1000(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 void eff94_2000(WORK_Other* ewk) {
     void (* const eff94_2000_jp[5])(WORK_Other *) = {
@@ -45,15 +64,45 @@ void eff94_2000(WORK_Other* ewk) {
     eff94_2000_jp[ewk->wu.routine_no[2]](ewk);
 }
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_2000_0);
+#else
+void eff94_2000_0(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_2000_1);
+#else
+void eff94_2000_1(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_2000_2);
+#else
+void eff94_2000_2(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_2000_3);
+#else
+void eff94_2000_3(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_2000_4);
+#else
+void eff94_2000_4(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 void eff94_3000(WORK_Other* ewk) {
     void (* const eff94_2000_jp[4])(WORK_Other *) = {
@@ -62,11 +111,29 @@ void eff94_3000(WORK_Other* ewk) {
     eff94_2000_jp[ewk->wu.routine_no[2]](ewk);
 }
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_3000_0);
+#else
+void eff94_3000_0(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_3000_4);
+#else
+void eff94_3000_4(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", eff94_4000);
+#else
+void eff94_4000(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 #if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff94", effect_94_init);

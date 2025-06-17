@@ -88,7 +88,13 @@ void zoom_ud_check() {
 }
 #endif
 
+#if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", suzi_offset_set);
+#else
+void suzi_offset_set(WORK_Other *ewk) {
+    not_implemented(__func__);
+}
+#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg_sub", suzi_offset_set_sub);
 
