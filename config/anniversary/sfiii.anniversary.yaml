@@ -362,7 +362,7 @@ segments:
       - [0x1237D0, asm, sf33rd/Source/Game/EFFH9]
       - [0x123CD0, asm, sf33rd/Source/Game/EFFI0]
       - [0x1243B0, asm, sf33rd/Source/Game/EFFI3]
-      - [0x124790, asm, sf33rd/Source/Game/EFFI4]
+      - [0x124790, c, sf33rd/Source/Game/EFFI4]
       - [0x124D20, asm, sf33rd/Source/Game/effi6]
       - [0x125040, asm, sf33rd/Source/Game/EFFI7]
       - [0x1254F0, asm, sf33rd/Source/Game/EFFI8]
