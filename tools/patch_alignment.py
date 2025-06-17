@@ -11,6 +11,7 @@ special_cases = {
     ("chren3rd", ".rodata", 0): 16,
     ("CHARSET", ".rodata", 11): 16,
     ("EFF69", ".rodata", 0): 16,
+    ("EFF78", ".rodata", 2): 16,
     ("EFFF2", ".rodata", 0): 16,
     ("EFFF8", ".rodata", 0): 16,
     ("pass00", ".rodata", 0): 16,
