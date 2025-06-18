@@ -1,6 +1,66 @@
+#include "sf33rd/Source/Game/EFF22.h"
 #include "common.h"
+#include "sf33rd/Source/Game/CHARSET.h"
+#include "sf33rd/Source/Game/EFFECT.h"
+#include "sf33rd/Source/Game/SLOWF.h"
+#include "sf33rd/Source/Game/aboutspr.h"
+#include "sf33rd/Source/Game/ta_sub.h"
+#include "sf33rd/Source/Game/workuser.h"
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF22", effect_22_move);
+void effect_22_move(WORK_Other* ewk) {
+    #if defined(TARGET_PS2)
+        void set_char_move_init(WORK * wk, s16 koc, s32 index);
+    #endif
+    const s32 * ptr;
+
+    if (obr_no_disp_check() == 0) {
+        if (compel_dead_check(ewk) != 0) {
+            ewk->wu.routine_no[0] = 0x63;
+            ewk->wu.disp_flag = 0;
+            return;
+        }
+
+        switch (ewk->wu.routine_no[0]) {
+        case 0:
+            ewk->wu.routine_no[0]++;
+            ewk->wu.dead_f = 1;
+            set_char_move_init(&ewk->wu, 0, 0xB);
+            ewk->wu.disp_flag = 1;
+            ewk->wu.old_rno[0] = 0;
+            /* fallthrough */
+
+        case 1:
+            ewk->wu.routine_no[0]++;
+            ptr = &snow_sp[ewk->wu.old_rno[0]][ewk->wu.type][0];
+            ewk->wu.mvxy.a[0].sp = *ptr++;
+            ewk->wu.mvxy.d[0].sp = *ptr++;
+            ewk->wu.mvxy.a[1].sp = *ptr++;
+            ewk->wu.mvxy.d[1].sp = *ptr++;
+            ewk->wu.xyz[0].disp.pos = snow_pos_tbl[ewk->wu.type][0];
+            ewk->wu.xyz[1].disp.pos = snow_pos_tbl[ewk->wu.type][1];
+            ewk->wu.old_rno[0]++;
+            ewk->wu.old_rno[0] &= 3;
+            break;
+
+        case 2:
+            if (!EXE_flag && !Game_pause) {
+                add_x_sub(ewk);
+                add_y_sub(ewk);
+                if (!(ewk->wu.xyz[1].disp.pos > 23)) {
+                    ewk->wu.routine_no[0] = 1;
+                }
+            }
+
+            disp_pos_trans_entry_r(ewk);
+            break;
+
+        default:
+            all_cgps_put_back(&ewk->wu);
+            push_effect_work(&ewk->wu);
+            break;
+        }
+    }
+}
 
 #if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF22", effect_22_init);
@@ -10,6 +70,60 @@ s32 effect_22_init() {
 }
 #endif
 
-INCLUDE_RODATA("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF22", snow_pos_tbl);
+const s16 snow_pos_tbl[12][2] = {
+    { 0x0070, 0x01a0 }, { 0x00b0, 0x0100 }, { 0x00d8, 0x0180 }, { 0x0120, 0x01c0 }, { 0x0170, 0x0120 }, { 0x01c0, 0x0180 }, { 0x0200, 0x00f0 }, { 0x0240, 0x01b0 }, { 0x0280, 0x0148 }, { 0x02c0, 0x01e8 }, { 0x0330, 0x0100 }, { 0x0370, 0x0180 }
+};
 
-INCLUDE_RODATA("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF22", snow_sp);
+const s32 snow_sp[4][12][4] = { {
+    { 0x00000200, 0x00000000, 0xffffe000, 0x00000000 },
+    { 0x00000400, 0x00000000, 0xffffe800, 0x00000000 },
+    { 0x00000800, 0x00000000, 0xffffe000, 0x00000000 },
+    { 0xfffffe00, 0x00000000, 0xffffde00, 0x00000000 },
+    { 0x00001200, 0x00000000, 0xffffe000, 0x00000000 },
+    { 0x00000000, 0x00000000, 0xffffe400, 0x00000000 },
+    { 0xfffff800, 0x00000000, 0xffffdf00, 0x00000000 },
+    { 0x00000400, 0x00000000, 0xffffe800, 0x00000000 },
+    { 0x00000800, 0x00000000, 0xffffe200, 0x00000000 },
+    { 0xffffff00, 0x00000000, 0xffffe000, 0x00000000 },
+    { 0xfffffc00, 0x00000000, 0xffffdc00, 0x00000000 },
+    { 0xffffff80, 0x00000000, 0xffffd800, 0x00000000 }
+    }, {
+    { 0x00000100, 0x00000000, 0xffffdf00, 0x00000000 },
+    { 0x00000200, 0x00000000, 0xffffe700, 0x00000000 },
+    { 0xffffff00, 0x00000000, 0xffffdb00, 0x00000000 },
+    { 0x00000c00, 0x00000000, 0xffffdd00, 0x00000000 },
+    { 0x00001200, 0x00000000, 0xffffe000, 0x00000000 },
+    { 0x00001000, 0x00000000, 0xffffe100, 0x00000000 },
+    { 0xfffff800, 0x00000000, 0xffffdf00, 0x00000000 },
+    { 0x00001200, 0x00000000, 0xffffd900, 0x00000000 },
+    { 0x00000200, 0x00000000, 0xffffe000, 0x00000000 },
+    { 0xffffff80, 0x00000000, 0xffffdd00, 0x00000000 },
+    { 0x00000080, 0x00000000, 0xffffea00, 0x00000000 },
+    { 0xfffffe00, 0x00000000, 0xffffd700, 0x00000000 },
+    }, {
+    { 0x00000100, 0x00000000, 0xffffe600, 0x00000000 },
+    { 0x00000200, 0x00000000, 0xffffde00, 0x00000000 },
+    { 0x00000400, 0x00000000, 0xffffda00, 0x00000000 },
+    { 0xfffff000, 0x00000000, 0xffffee00, 0x00000000 },
+    { 0x00001200, 0x00000000, 0xffffe000, 0x00000000 },
+    { 0x00002000, 0x00000000, 0xffffe000, 0x00000000 },
+    { 0x00000800, 0x00000000, 0xffffe200, 0x00000000 },
+    { 0xfffffc00, 0x00000000, 0xffffd100, 0x00000000 },
+    { 0x00000180, 0x00000000, 0xffffda00, 0x00000000 },
+    { 0xffffff80, 0x00000000, 0xffffde00, 0x00000000 },
+    { 0x00000100, 0x00000000, 0xffffe600, 0x00000000 },
+    { 0x00000000, 0x00000000, 0xffffd800, 0x00000000 },
+    }, {
+    { 0x00000180, 0x00000000, 0xffffe600, 0x00000000 },
+    { 0x00000000, 0x00000000, 0xffffec00, 0x00000000 },
+    { 0x00001200, 0x00000000, 0xffffdc00, 0x00000000 },
+    { 0xfffff800, 0x00000000, 0xffffda00, 0x00000000 },
+    { 0x00001200, 0x00000000, 0xffffe000, 0x00000000 },
+    { 0xfffff000, 0x00000000, 0xffffee00, 0x00000000 },
+    { 0x00000800, 0x00000000, 0xffffe200, 0x00000000 },
+    { 0x00000100, 0x00000000, 0xffffde00, 0x00000000 },
+    { 0xffffff00, 0x00000000, 0xffffe400, 0x00000000 },
+    { 0x00000100, 0x00000000, 0xffffec00, 0x00000000 },
+    { 0xffffff80, 0x00000000, 0xffffe800, 0x00000000 },
+    { 0x00000000, 0x00000000, 0xffffe000, 0x00000000 }
+} };
