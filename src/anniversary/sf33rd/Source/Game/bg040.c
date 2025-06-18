@@ -1,15 +1,15 @@
 #include "sf33rd/Source/Game/bg040.h"
 #include "common.h"
+#include "sf33rd/Source/Game/EFF44.h"
+#include "sf33rd/Source/Game/EFF53.h"
+#include "sf33rd/Source/Game/PLCNT.h"
+#include "sf33rd/Source/Game/WORK_SYS.h"
 #include "sf33rd/Source/Game/bg.h"
 #include "sf33rd/Source/Game/bg_data.h"
 #include "sf33rd/Source/Game/bg_sub.h"
 #include "sf33rd/Source/Game/eff06.h"
 #include "sf33rd/Source/Game/eff12.h"
-#include "sf33rd/Source/Game/EFF44.h"
-#include "sf33rd/Source/Game/EFF53.h"
-#include "sf33rd/Source/Game/PLCNT.h"
 #include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
 
 void BG040() {
     bgw_ptr = &bg_w.bgw[1];
@@ -22,7 +22,7 @@ void BG040() {
 }
 
 void bg0401() {
-    void (* bg0401_jmp[3])() = { bg0401_init00, bg0401_init01, bg_move_common };
+    void (*bg0401_jmp[3])() = { bg0401_init00, bg0401_init01, bg_move_common };
     bg0401_jmp[bgw_ptr->r_no_0]();
 }
 
@@ -42,7 +42,7 @@ void bg0401_init01() {
 }
 
 void bg0402() {
-    void (* bg0402_jmp[3])() = { bg0402_init00, bg0402_init01, bg_base_move_common };
+    void (*bg0402_jmp[3])() = { bg0402_init00, bg0402_init01, bg_base_move_common };
     bg0402_jmp[bgw_ptr->r_no_0]();
 }
 

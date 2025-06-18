@@ -1,14 +1,14 @@
 #include "sf33rd/Source/Game/bg070.h"
 #include "common.h"
+#include "sf33rd/Source/Game/PLCNT.h"
+#include "sf33rd/Source/Game/WORK_SYS.h"
 #include "sf33rd/Source/Game/bg.h"
 #include "sf33rd/Source/Game/bg_data.h"
 #include "sf33rd/Source/Game/bg_sub.h"
 #include "sf33rd/Source/Game/eff06.h"
 #include "sf33rd/Source/Game/eff94.h"
 #include "sf33rd/Source/Game/effJ8.h"
-#include "sf33rd/Source/Game/PLCNT.h"
 #include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
 
 void BG070() {
     bgw_ptr = &bg_w.bgw[1];
@@ -25,7 +25,7 @@ void BG070() {
 }
 
 void bg0701() {
-    void (* bg0701_jmp[2])() = { bg0701_init00, bg0701_move00 };
+    void (*bg0701_jmp[2])() = { bg0701_init00, bg0701_move00 };
     bg0701_jmp[bgw_ptr->r_no_0]();
 }
 
@@ -43,7 +43,7 @@ void bg0701_move00() {
 }
 
 void bg0702() {
-    void (* bg0702_jmp[2])() = { bg0702_init00, bg_base_move_common };
+    void (*bg0702_jmp[2])() = { bg0702_init00, bg_base_move_common };
     bg0702_jmp[bgw_ptr->r_no_0]();
 }
 
@@ -81,7 +81,7 @@ void bg0703() {
 }
 
 void bg0704() {
-    void (* bg0704_jmp[2])() = { bg0704_init00, bg0704_move00 };
+    void (*bg0704_jmp[2])() = { bg0704_init00, bg0704_move00 };
     bg0704_jmp[bgw_ptr->r_no_0]();
 }
 

@@ -9,10 +9,10 @@
 #include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/workuser.h"
 
-void effect_19_move(WORK_Other* ewk) {
-    #if defined(TARGET_PS2)
-        void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    #endif
+void effect_19_move(WORK_Other *ewk) {
+#if defined(TARGET_PS2)
+    void set_char_move_init(WORK * wk, s16 koc, s32 index);
+#endif
     if (obr_no_disp_check() == 0) {
         switch (ewk->wu.routine_no[0]) {
         case 0:
@@ -36,10 +36,10 @@ void effect_19_move(WORK_Other* ewk) {
     }
 }
 
-void eff19_quake_sub(WORK_Other* ewk) {
-    #if defined(TARGET_PS2)
-        void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    #endif
+void eff19_quake_sub(WORK_Other *ewk) {
+#if defined(TARGET_PS2)
+    void set_char_move_init(WORK * wk, s16 koc, s32 index);
+#endif
     s16 work;
     s8 fall_go;
 
@@ -134,13 +134,11 @@ s32 effect_19_init() {
 }
 #endif
 
-const s16 eff19_data_tbl[14] = {
-    0x0180, 0x00c0, 0x0100, 0x00c4, 0x01a0, 0x00f0, 0x0148, 0x0120, 0x0178, 0x0100, 0x01c4, 0x00fc, 0x00ce, 0x00d2
-};
+const s16 eff19_data_tbl[14] = { 0x0180, 0x00c0, 0x0100, 0x00c4, 0x01a0, 0x00f0, 0x0148,
+                                 0x0120, 0x0178, 0x0100, 0x01c4, 0x00fc, 0x00ce, 0x00d2 };
 
-const s8 eff19_wait_tbl[16] = {
-    0x06, 0x1e, 0x03, 0x32, 0x14, 0x12, 0x0e, 0x1c, 0x00, 0x08, 0x12, 0x04, 0x1e, 0x17, 0x26, 0x04
-};
+const s8 eff19_wait_tbl[16] = { 0x06, 0x1e, 0x03, 0x32, 0x14, 0x12, 0x0e, 0x1c,
+                                0x00, 0x08, 0x12, 0x04, 0x1e, 0x17, 0x26, 0x04 };
 
 const s8 effect_19_s_tbl[16] = { 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0 };
 

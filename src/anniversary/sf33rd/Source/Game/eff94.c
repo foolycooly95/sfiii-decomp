@@ -1,18 +1,18 @@
 #include "sf33rd/Source/Game/eff94.h"
 #include "common.h"
-#include "sf33rd/Source/Game/aboutspr.h"
 #include "sf33rd/Source/Game/CHARSET.h"
 #include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/eff05.h"
 #include "sf33rd/Source/Game/SLOWF.h"
+#include "sf33rd/Source/Game/aboutspr.h"
+#include "sf33rd/Source/Game/eff05.h"
 #include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/workuser.h"
 
-void effect_94_move(WORK_Other* ewk) {
-    #if defined(TARGET_PS2)
-        void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    #endif
-    void (* const eff94_move_jp[5])(WORK_Other *) = {
+void effect_94_move(WORK_Other *ewk) {
+#if defined(TARGET_PS2)
+    void set_char_move_init(WORK * wk, s16 koc, s32 index);
+#endif
+    void (*const eff94_move_jp[5])(WORK_Other *) = {
         eff94_0000, eff94_1000, eff94_2000, eff94_3000, eff94_4000,
     };
 
@@ -57,10 +57,9 @@ void eff94_1000(WORK_Other *ewk) {
 }
 #endif
 
-void eff94_2000(WORK_Other* ewk) {
-    void (* const eff94_2000_jp[5])(WORK_Other *) = {
-        eff94_2000_0, eff94_2000_1, eff94_2000_2, eff94_2000_3, eff94_2000_4
-    };
+void eff94_2000(WORK_Other *ewk) {
+    void (*const eff94_2000_jp[5])(
+        WORK_Other *) = { eff94_2000_0, eff94_2000_1, eff94_2000_2, eff94_2000_3, eff94_2000_4 };
     eff94_2000_jp[ewk->wu.routine_no[2]](ewk);
 }
 
@@ -104,10 +103,8 @@ void eff94_2000_4(WORK_Other *ewk) {
 }
 #endif
 
-void eff94_3000(WORK_Other* ewk) {
-    void (* const eff94_2000_jp[4])(WORK_Other *) = {
-        eff94_3000_0, eff94_2000_2, eff94_2000_3, eff94_3000_4
-    };
+void eff94_3000(WORK_Other *ewk) {
+    void (*const eff94_2000_jp[4])(WORK_Other *) = { eff94_3000_0, eff94_2000_2, eff94_2000_3, eff94_3000_4 };
     eff94_2000_jp[ewk->wu.routine_no[2]](ewk);
 }
 
@@ -151,13 +148,10 @@ const s16 eff94_data_tbl[5][10] = {
     { 0x0002, 0x212c, 0x0160, 0x0110, 0x000a, 0x0002, 0x0002, 0x0000, 0x0003, 0x0000 }
 };
 
-const s16 eff94_2000_tbl[8] = {
-    0x0120, 0x0150, 0x0140, 0x0120, 0x0148, 0x0128, 0x0158, 0x0130
-};
+const s16 eff94_2000_tbl[8] = { 0x0120, 0x0150, 0x0140, 0x0120, 0x0148, 0x0128, 0x0158, 0x0130 };
 
 const s8 eff94_2000_1_tbl[16] = { 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1 };
 
 const s16 eff94_3000_tbl[4][3] = {
-    { 0x0148, 0x0130, 0x0000 }, { 0x0120, 0x00f0, 0x0001 },
-    { 0x0118, 0x0140, 0x0000 }, { 0x0160, 0x0108, 0x0001 }
+    { 0x0148, 0x0130, 0x0000 }, { 0x0120, 0x00f0, 0x0001 }, { 0x0118, 0x0140, 0x0000 }, { 0x0160, 0x0108, 0x0001 }
 };

@@ -1,15 +1,15 @@
 #include "sf33rd/Source/Game/bg180.h"
 #include "common.h"
+#include "sf33rd/Source/Game/EFF22.h"
+#include "sf33rd/Source/Game/EFF44.h"
+#include "sf33rd/Source/Game/PLCNT.h"
+#include "sf33rd/Source/Game/WORK_SYS.h"
 #include "sf33rd/Source/Game/bg.h"
 #include "sf33rd/Source/Game/bg_data.h"
 #include "sf33rd/Source/Game/bg_sub.h"
 #include "sf33rd/Source/Game/eff05.h"
 #include "sf33rd/Source/Game/eff06.h"
-#include "sf33rd/Source/Game/EFF22.h"
-#include "sf33rd/Source/Game/EFF44.h"
-#include "sf33rd/Source/Game/PLCNT.h"
 #include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
 
 void BG180() {
     bgw_ptr = &bg_w.bgw[1];
@@ -24,7 +24,7 @@ void BG180() {
 }
 
 void bg1801() {
-    void (* bg1801_jmp[2])() = { bg1801_init00, bg1801_move };
+    void (*bg1801_jmp[2])() = { bg1801_init00, bg1801_move };
     bg1801_jmp[bgw_ptr->r_no_0]();
 }
 
@@ -41,7 +41,7 @@ void bg1801_move() {
 }
 
 void bg1802() {
-    void (* bg1802_jmp[2])() = { bg1802_init00, bg1802_move };
+    void (*bg1802_jmp[2])() = { bg1802_init00, bg1802_move };
     bg1802_jmp[bgw_ptr->r_no_0]();
 }
 
@@ -63,8 +63,8 @@ void bg1802_move() {
 }
 
 void bg180_sync_common() {
-  void (* bg1800_sync_jmp[2])() = { bg180_sync_init, bg180_sync_move };
-  bg1800_sync_jmp[bgw_ptr->r_no_0]();
+    void (*bg1800_sync_jmp[2])() = { bg180_sync_init, bg180_sync_move };
+    bg1800_sync_jmp[bgw_ptr->r_no_0]();
 }
 
 void bg180_sync_init() {

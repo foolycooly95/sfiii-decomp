@@ -12,9 +12,9 @@
 const s16 *eff21_data_adrs[1] = { eff21_data_tbl_00 };
 
 void effect_21_move(WORK_Other *ewk) {
-    #if defined(TARGET_PS2)
-        void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    #endif
+#if defined(TARGET_PS2)
+    void set_char_move_init(WORK * wk, s16 koc, s32 index);
+#endif
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0]++;
@@ -23,7 +23,7 @@ void effect_21_move(WORK_Other *ewk) {
         break;
 
     case 1:
-        if (!EXE_flag  && !Game_pause && !EXE_obroll) {
+        if (!EXE_flag && !Game_pause && !EXE_obroll) {
             char_move(&ewk->wu);
         }
         ewk->wu.xyz[0].disp.pos = ewk->wu.old_rno[0];
@@ -60,8 +60,6 @@ const s16 eff21_num[1] = { 3 };
 
 const s32 eff21_sp_tbl[1][2] = { { 0x00002000, 0x00002000 } };
 
-const s16 eff21_data_tbl_00[27] = {
-    0x0001, 0x0002, 0x212c, 0x0280, 0x0000, 0x000a, 0x0011, 0x0000, 0x0000,
-    0x0000, 0x0002, 0x212c, 0x00c0, 0x0000, 0x000a, 0x0012, 0x0000, 0x0000,
-    0x0001, 0x0002, 0x212c, 0x02e0, 0x0000, 0x000a, 0x0013, 0x0000, 0x0000
-};
+const s16 eff21_data_tbl_00[27] = { 0x0001, 0x0002, 0x212c, 0x0280, 0x0000, 0x000a, 0x0011, 0x0000, 0x0000,
+                                    0x0000, 0x0002, 0x212c, 0x00c0, 0x0000, 0x000a, 0x0012, 0x0000, 0x0000,
+                                    0x0001, 0x0002, 0x212c, 0x02e0, 0x0000, 0x000a, 0x0013, 0x0000, 0x0000 };

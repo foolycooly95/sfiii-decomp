@@ -1,17 +1,17 @@
 #include "sf33rd/Source/Game/bg090.h"
 #include "common.h"
+#include "sf33rd/Source/Game/EFF68.h"
+#include "sf33rd/Source/Game/PLCNT.h"
+#include "sf33rd/Source/Game/SLOWF.h"
+#include "sf33rd/Source/Game/WORK_SYS.h"
 #include "sf33rd/Source/Game/appear.h"
 #include "sf33rd/Source/Game/bg.h"
 #include "sf33rd/Source/Game/bg_data.h"
 #include "sf33rd/Source/Game/bg_sub.h"
 #include "sf33rd/Source/Game/eff05.h"
 #include "sf33rd/Source/Game/eff06.h"
-#include "sf33rd/Source/Game/EFF68.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
 #include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/workuser.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
 
 void BG090() {
     bgw_ptr = &bg_w.bgw[1];
@@ -30,7 +30,7 @@ void BG090() {
 }
 
 void bg0901() {
-    void (* bg0901_jmp[3])() = { bg0901_init00, demo90_base, bg_move_common };
+    void (*bg0901_jmp[3])() = { bg0901_init00, demo90_base, bg_move_common };
     if (win_sp_flag) {
         jijii_win_bg2();
         return;
@@ -46,7 +46,7 @@ void bg0901_init00() {
 }
 
 void bg0902() {
-    void (* bg0902_jmp[3])() = { bg0902_init00, demo90_base, bg_base_move_common };
+    void (*bg0902_jmp[3])() = { bg0902_init00, demo90_base, bg_base_move_common };
     if (win_sp_flag) {
         jijii_win_bg();
         return;
@@ -95,7 +95,6 @@ void bg_fam0900() {
             break;
         }
 
-
         bgw_ptr->xy[0].disp.low = bgw_ptr->xy[1].disp.low = 0;
         bgw_ptr->y_limit = bgw_ptr->y_limit2 = 0xF0;
         bg090_demo_check();
@@ -141,44 +140,43 @@ void demo90_base() {
     }
 
     switch (bgw_ptr->r_no_1) {
-        case 0: {
-            chk_pl = 0;
+    case 0: {
+        chk_pl = 0;
 
-            if (plw->player_number == 9 && plw[1].player_number == 9) {
-                if (Appear_hv[0]) {
-                    chk_pl = 1;
-                }
-            } else if (plw[1].player_number == 9) {
+        if (plw->player_number == 9 && plw[1].player_number == 9) {
+            if (Appear_hv[0]) {
                 chk_pl = 1;
             }
+        } else if (plw[1].player_number == 9) {
+            chk_pl = 1;
+        }
 
-            if (Appear_free[chk_pl]) {
-                bgw_ptr->r_no_1++;
-                return;
-            }
+        if (Appear_free[chk_pl]) {
+            bgw_ptr->r_no_1++;
+            return;
+        }
+    } break;
+
+    case 1:
+        bgw_ptr->xy[1].cal -= bgw_ptr->speed_y * 0xA;
+        bgw_ptr->wxy[1].cal -= bgw_ptr->speed_y * 0xA;
+
+        if (bgw_ptr->xy[1].disp.pos <= 0) {
+            bgw_ptr->r_no_1++;
+            bgw_ptr->xy[1].cal = 0;
+            bgw_ptr->wxy[1].cal = 0;
+            return;
         }
         break;
 
-        case 1:
-            bgw_ptr->xy[1].cal -= bgw_ptr->speed_y * 0xA;
-            bgw_ptr->wxy[1].cal -= bgw_ptr->speed_y * 0xA;
-
-            if (bgw_ptr->xy[1].disp.pos <= 0) {
-                bgw_ptr->r_no_1++;
-                bgw_ptr->xy[1].cal = 0;
-                bgw_ptr->wxy[1].cal = 0;
-                return;
-            }
-            break;
-
-        case 2:
-            if (Appear_end == 2) {
-                bgw_ptr->r_no_0++;
-                bgw_ptr->r_no_1 = 0;
-                bgw_ptr->xy[1].cal = 0;
-                bgw_ptr->wxy[1].cal = 0;
-            }
-            break;
+    case 2:
+        if (Appear_end == 2) {
+            bgw_ptr->r_no_0++;
+            bgw_ptr->r_no_1 = 0;
+            bgw_ptr->xy[1].cal = 0;
+            bgw_ptr->wxy[1].cal = 0;
+        }
+        break;
     }
 }
 
@@ -213,17 +211,16 @@ void jijii_win_bg2() {
     }
 
     switch (bg_w.bgw[1].r_no_1) {
-        case 0:
-            if (win_sp_flag == 2) {
-                zuu_work = 0xA;
-                sp_work = bgw_ptr->speed_y * zuu_work;
-                bgw_ptr->xy[1].cal += sp_work;
-                bgw_ptr->wxy[1].cal += sp_work;
-            }
-            /* fallthrough */
+    case 0:
+        if (win_sp_flag == 2) {
+            zuu_work = 0xA;
+            sp_work = bgw_ptr->speed_y * zuu_work;
+            bgw_ptr->xy[1].cal += sp_work;
+            bgw_ptr->wxy[1].cal += sp_work;
+        }
+        /* fallthrough */
 
-        case 1:
-            break;
-
+    case 1:
+        break;
     }
 }

@@ -1,14 +1,14 @@
 #include "sf33rd/Source/Game/bns_bg2.h"
 #include "common.h"
+#include "sf33rd/Source/Game/PLCNT.h"
+#include "sf33rd/Source/Game/WORK_SYS.h"
 #include "sf33rd/Source/Game/bg.h"
 #include "sf33rd/Source/Game/bg_data.h"
 #include "sf33rd/Source/Game/bg_sub.h"
 #include "sf33rd/Source/Game/eff05.h"
 #include "sf33rd/Source/Game/eff12.h"
 #include "sf33rd/Source/Game/eff35.h"
-#include "sf33rd/Source/Game/PLCNT.h"
 #include "sf33rd/Source/Game/workuser.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
 
 void Bonus_bg2() {
     bgw_ptr = &bg_w.bgw[1];
@@ -24,7 +24,7 @@ void Bonus_bg2() {
 }
 
 void bns11() {
-    void (* bns11_jmp[2])() = { bns11_init00, bns11_move };
+    void (*bns11_jmp[2])() = { bns11_init00, bns11_move };
     bns11_jmp[bgw_ptr->r_no_0]();
 }
 
@@ -61,7 +61,7 @@ void bns11_move() {
 }
 
 void bns12() {
-    void (* bns12_jmp[2])() = { bns12_init00, bns12_move };
+    void (*bns12_jmp[2])() = { bns12_init00, bns12_move };
     bns12_jmp[bgw_ptr->r_no_0]();
 }
 
@@ -85,7 +85,7 @@ void bns12_move() {
 }
 
 void bns13() {
-    void (* bns13_jmp[2])() = { bns13_init00, bns13_move };
+    void (*bns13_jmp[2])() = { bns13_init00, bns13_move };
     bns13_jmp[bgw_ptr->r_no_0]();
 }
 

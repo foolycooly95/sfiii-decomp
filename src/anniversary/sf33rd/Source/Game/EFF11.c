@@ -148,11 +148,11 @@ void quake_level_middle(WORK_Other *ewk) {
     }
 }
 
-void quake_level_large(WORK_Other* ewk) {
-    #if defined(TARGET_PS2)
-        void set_char_move_init(WORK * wk, s16 koc, s32 index);
-        void set_char_move_init2(WORK * wk, s16 koc, s32 index, s16 ip, s16 scf);
-    #endif
+void quake_level_large(WORK_Other *ewk) {
+#if defined(TARGET_PS2)
+    void set_char_move_init(WORK * wk, s16 koc, s32 index);
+    void set_char_move_init2(WORK * wk, s16 koc, s32 index, s16 ip, s16 scf);
+#endif
     s16 work;
     switch (ewk->wu.routine_no[2]) {
     case 0:
@@ -163,7 +163,7 @@ void quake_level_large(WORK_Other* ewk) {
         ewk->wu.mvxy.a[0].sp = (eff11_quake_speed_x_tbl[ewk->wu.old_rno[3]][ewk->wu.old_rno[1]]);
         work = random_16();
 
-        if (work & 1){
+        if (work & 1) {
             ewk->wu.mvxy.a[0].sp = -ewk->wu.mvxy.a[0].sp;
         }
         /* fallthrough */
