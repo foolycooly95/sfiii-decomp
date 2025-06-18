@@ -14,5 +14,6 @@ void disp_pos_trans_entry_r(WORK_Other *ewk);
 void disp_pos_trans_entry_s(WORK_Other *ewk);
 void add_x_sub(WORK_Other *ewk);
 s32 compel_dead_check(WORK_Other *ewk);
+s32 range_x_check(WORK_Other *ewk);
 
 #endif

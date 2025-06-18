@@ -3,6 +3,7 @@
 #include "sf33rd/Source/Game/CALDIR.h"
 #include "sf33rd/Source/Game/CHARSET.h"
 #include "sf33rd/Source/Game/EFFECT.h"
+#include "sf33rd/Source/Game/PLS02.h"
 #include "sf33rd/Source/Game/SLOWF.h"
 #include "sf33rd/Source/Game/aboutspr.h"
 #include "sf33rd/Source/Game/bg.h"
