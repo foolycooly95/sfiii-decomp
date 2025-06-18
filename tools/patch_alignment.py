@@ -2,7 +2,7 @@ from elftools.elf.elffile import ELFFile
 from pathlib import Path
 import sys
 
-#(file, section, index of section within sections of this type)->alignment
+# (file, section, index of section within sections of this type) -> alignment
 special_cases = {
     ("menu", ".rodata", 9): 16,
     ("menu", ".rodata", 16): 16,
@@ -94,8 +94,8 @@ def alignments(path: Path) -> list[tuple[int, int]]:
 
         alignments: list[tuple[int, int]] = list()
 
-#Current index of section among sections of this type.
-#.text->3 means this.text section is the 3rd .text section.
+        # Current index of section among sections of this type.
+        # .text -> 3 means this .text section is the 3rd .text section.
         section_indices = {
             ".text": 0,
             ".data": 0,
@@ -123,7 +123,7 @@ def alignments(path: Path) -> list[tuple[int, int]]:
             if section_key in special_cases:
                 section_alignment = special_cases[section_key]
             elif section.name in (".bss", ".sbss", ".sdata"):
-#Don't change alignment of .bss/.sbss/.sdata sections if not explicitly stated
+                # Don't change alignment of .bss/.sbss/.sdata sections if not explicitly stated
                 section_alignment = None
 
             alignments.append((align_offset, section_alignment))
