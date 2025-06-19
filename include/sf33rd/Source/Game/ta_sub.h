@@ -20,5 +20,6 @@ s32 compel_dead_check(WORK_Other *ewk);
 s32 range_x_check(WORK_Other *ewk);
 s16 eff_hit_check(WORK_Other *ewk, s16 type);
 s16 eff_hit_check2(WORK_Other *ewk, s16 type, s16 where_type);
+s32 range_x_check3(WORK_Other *ewk, s16 optional_range);
 
 #endif
