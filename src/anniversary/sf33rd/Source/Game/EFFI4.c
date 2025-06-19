@@ -124,8 +124,6 @@ void effi4_down_to_up(WORK_Other *ewk) {
     }
 }
 
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFI4", effi4_up_to_down);
-
 void effi4_up_to_down(WORK_Other *ewk) {
     char_move(&ewk->wu);
     if (ewk->wu.cg_type == 0xFF) {
