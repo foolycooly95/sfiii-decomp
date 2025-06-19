@@ -69,4 +69,4 @@ s32 effect_53_init() {
 }
 #endif
 
-const s16 eff53_vanish_time[8] = { 0x01e0, 0x0258, 0x0384, 0x05a0, 0x01e0, 0x0438, 0x05dc, 0x0258 };
+const s16 eff53_vanish_time[8] = { 480, 600, 900, 1440, 480, 1080, 1500, 600 };
