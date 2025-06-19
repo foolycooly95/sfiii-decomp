@@ -1,9 +1,11 @@
 #include "sf33rd/Source/Game/eff06.h"
 #include "common.h"
+#include "sf33rd/Source/Game/CHARSET.h"
 #include "sf33rd/Source/Game/EFFECT.h"
 #include "sf33rd/Source/Game/aboutspr.h"
 #include "sf33rd/Source/Game/bg.h"
 #include "sf33rd/Source/Game/eff05.h"
+#include "sf33rd/Source/Game/ta_sub.h"
 
 const s16 *scr_obj_data6[22] = { st0000_data_tbl,  st0100_data_tbl,  st0200_data_tbl, stg_dum_data_tbl, st0400_data_tbl,
                                  st0500_data_tbl,  stg_dum_data_tbl, st0700_data_tbl, st0800_data_tbl,  st0900_data_tbl,
@@ -11,7 +13,31 @@ const s16 *scr_obj_data6[22] = { st0000_data_tbl,  st0100_data_tbl,  st0200_data
                                  st1000_data_tbl,  st1100_data_tbl,  st0500_data_tbl, st1300_data_tbl,  st1400_data_tbl,
                                  stg_dum_data_tbl, stg_dum_data_tbl };
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff06", effect_06_move);
+void effect_06_move(WORK_Other *ewk) {
+#if defined(TARGET_PS2)
+    void set_char_move_init(WORK * wk, s16 koc, s32 index);
+#endif
+    if (obr_no_disp_check() == 0) {
+        switch (ewk->wu.routine_no[0]) {
+        case 0:
+            ewk->wu.routine_no[0]++;
+            ewk->wu.disp_flag = 1;
+            set_char_move_init(&ewk->wu, 0, ewk->wu.char_index);
+            return;
+        case 1:
+            if (compel_dead_check(ewk)) {
+                ewk->wu.routine_no[0]++;
+                return;
+            }
+            disp_pos_trans_entry_rs(ewk);
+            return;
+        default:
+            all_cgps_put_back(&ewk->wu);
+            push_effect_work(&ewk->wu);
+            break;
+        }
+    }
+}
 
 #if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff06", effect_06_init);
