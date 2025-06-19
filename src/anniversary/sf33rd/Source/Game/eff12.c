@@ -1,11 +1,50 @@
 #include "sf33rd/Source/Game/eff12.h"
 #include "common.h"
+#include "sf33rd/Source/Game/CHARSET.h"
+#include "sf33rd/Source/Game/EFFECT.h"
+#include "sf33rd/Source/Game/SLOWF.h"
+#include "sf33rd/Source/Game/aboutspr.h"
+#include "sf33rd/Source/Game/bg.h"
 #include "sf33rd/Source/Game/eff05.h"
+#include "sf33rd/Source/Game/ta_sub.h"
+#include "sf33rd/Source/Game/workuser.h"
 
 const s16 *scr_obj_data12[6] = { eff12_data_tbl0, eff12_data_tbl1, eff12_data_tbl2,
                                  eff12_data_tbl3, eff12_data_tbl4, eff12_data_tbl5 };
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff12", effect_12_move);
+void effect_12_move(WORK_Other *ewk) {
+#if defined(TARGET_PS2)
+    void set_char_move_init(WORK * wk, s16 koc, s32 index);
+#endif
+    if (obr_no_disp_check() == 0) {
+        switch (ewk->wu.routine_no[0]) {
+        case 0:
+            ewk->wu.routine_no[0]++;
+            ewk->wu.disp_flag = 1;
+            set_char_move_init(&ewk->wu, 0, ewk->wu.char_index);
+            break;
+
+        case 1:
+            if (compel_dead_check(ewk)) {
+                ewk->wu.routine_no[0]++;
+                ewk->wu.disp_flag = 0;
+                return;
+            }
+
+            if (!EXE_flag && !Game_pause) {
+                char_move(&ewk->wu);
+            }
+
+            disp_pos_trans_entry(ewk);
+            break;
+
+        default:
+            all_cgps_put_back(&ewk->wu);
+            push_effect_work(&ewk->wu);
+            break;
+        }
+    }
+}
 
 #if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/eff12", effect_12_init);

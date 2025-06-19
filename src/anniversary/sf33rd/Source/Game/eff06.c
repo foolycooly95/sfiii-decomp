@@ -23,14 +23,17 @@ void effect_06_move(WORK_Other *ewk) {
             ewk->wu.routine_no[0]++;
             ewk->wu.disp_flag = 1;
             set_char_move_init(&ewk->wu, 0, ewk->wu.char_index);
-            return;
+            break;
+
         case 1:
             if (compel_dead_check(ewk)) {
                 ewk->wu.routine_no[0]++;
                 return;
             }
+
             disp_pos_trans_entry_rs(ewk);
-            return;
+            break;
+
         default:
             all_cgps_put_back(&ewk->wu);
             push_effect_work(&ewk->wu);
