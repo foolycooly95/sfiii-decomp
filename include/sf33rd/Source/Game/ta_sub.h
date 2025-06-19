@@ -4,6 +4,8 @@
 #include "structs.h"
 #include "types.h"
 
+extern s16 eff_hit_flag[11]; // size: 0x16, address: 0x579A70
+
 void sync_fam_set3(s16 my_fam);
 void win_lose_work_clear();
 s32 obr_no_disp_check();
@@ -16,5 +18,6 @@ void disp_pos_trans_entry_rs(WORK_Other *ewk);
 void add_x_sub(WORK_Other *ewk);
 s32 compel_dead_check(WORK_Other *ewk);
 s32 range_x_check(WORK_Other *ewk);
+s16 eff_hit_check(WORK_Other *ewk, s16 type);
 
 #endif
