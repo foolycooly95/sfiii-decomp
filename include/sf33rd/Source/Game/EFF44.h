@@ -1,6 +1,7 @@
 #ifndef EFF44_H
 #define EFF44_H
 
+#include "structs.h"
 #include "types.h"
 
 extern const s16 scr_obj_num44[10];   // size: 0x14, address: 0x50A3A0
