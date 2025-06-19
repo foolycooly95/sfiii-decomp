@@ -1,7 +1,10 @@
 #ifndef EFF29_H
 #define EFF29_H
 
+#include "structs.h"
 #include "types.h"
+
+extern const s16 eff29_vanish_time[8]; // size: 0x10, address: 0x509BF0
 
 s32 effect_29_init();
 
