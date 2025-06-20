@@ -8,8 +8,6 @@
 #include "sf33rd/Source/Game/ta_sub.h"
 #include "sf33rd/Source/Game/workuser.h"
 
-// INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFF68", effect_68_move);
-
 void effect_68_move(WORK_Other *ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
