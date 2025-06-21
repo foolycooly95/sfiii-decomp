@@ -1,8 +1,12 @@
 #include "sf33rd/Source/Game/bg.h"
 #include "common.h"
+#include "sf33rd/Source/Common/PPGFile.h"
+#include "sf33rd/Source/Common/PPGWork.h"
 #include "sf33rd/Source/Game/DC_Ghost.h"
+#include "sf33rd/Source/Game/MTRANS.h"
 #include "sf33rd/Source/Game/WORK_SYS.h"
 #include "sf33rd/Source/Game/bg_data.h"
+#include "sf33rd/Source/Game/color3rd.h"
 #include "structs.h"
 
 // sbss
@@ -31,19 +35,48 @@ s32 bgPalCodeOffset[8];
 BG bg_w;
 RW_DATA rw_dat[20];
 
-#if defined(TARGET_PS2)
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Bg_TexInit);
-#else
 void Bg_TexInit() {
-    not_implemented(__func__);
+    s32 i = 0;
+
+    while (i < 3) {
+        ppgBgList[i].tex = &ppgBgTex[i];
+        ppgBgList[i].pal = palGetChunkGhostCP3();
+        i++;
+    }
+
+    ppgRwBgList.tex = &ppgRwBgTex;
+    ppgRwBgList.pal = palGetChunkGhostCP3();
+    ppgAkeList.tex = &ppgAkeTex;
+    ppgAkeList.pal = &ppgAkePal;
+    ppgAkaneList.tex = &ppgAkaneTex;
+    ppgAkaneList.pal = &ppgAkanePal;
 }
-#endif
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Bg_Kakikae_Set);
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Ed_Kakikae_Set);
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Bg_Close);
+void Bg_Close() {
+    u32 i;
+
+    tokusyu_stage = 0;
+    rw_num = 0;
+    i = 0;
+
+    while (i < 3) {
+        ppgReleaseTextureHandle(&ppgBgTex[i], -1);
+        i += 1;
+    }
+
+    ppgReleaseTextureHandle(&ppgRwBgTex, -1);
+    ppgReleaseTextureHandle(&ppgAkeTex, -1);
+    ppgReleasePaletteHandle(&ppgAkePal, -1);
+    ppgReleaseTextureHandle(&ppgAkaneTex, -1);
+    ppgReleasePaletteHandle(&ppgAkanePal, -1);
+    Screen_Switch = 0;
+    Screen_Switch_Buffer = 0;
+    bg_disp_off = 0;
+}
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Bg_Texture_Load_EX);
 
@@ -61,17 +94,153 @@ INCLUDE_RODATA("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", literal_502
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", scr_trans);
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", bgRWWorkUpdate);
+void bgRWWorkUpdate() {
+    s32 i = 0;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", bgDrawOneScreen);
+    while (i < rw_num) {
+        rw_dat[i].rw_cnt--;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", bgDrawOneChip);
+        if (rw_dat[i].rw_cnt == 0) {
+            if (*rw_dat[i].rwd_ptr == -1) {
+                rw_dat[i].rwd_ptr = rw_dat[i].brw_ptr;
+                rw_dat[i].rw_cnt = *rw_dat[i].rwd_ptr++;
+                rw_dat[i].gbix = *rw_dat[i].rwd_ptr++;
+            } else {
+                rw_dat[i].rw_cnt = *rw_dat[i].rwd_ptr++;
+                rw_dat[i].gbix = *rw_dat[i].rwd_ptr++;
+            }
+        }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", bgAkebonoDraw);
+        i++;
+    }
+}
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", ppgCalScrPosition);
+void bgDrawOneScreen(s32 bgnum, s32 gixbase, s32 *xx, s32 *yy, s32 /* unused */, s32 ofsPal, PPGDataList *curDataList) {
+    s32 i, x, y, gbix;
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", scr_trans_sub2);
+    y = yy[0];
+    while (y < yy[1]) {
+        x = xx[0];
+        while (x < xx[1]) {
+            gbix = ((y >> 7) << 3) + (x >> 7) + gixbase;
+
+            if (rw_bg_flag[bgnum] && rw_num) {
+                for (i = 0; i < rw_num; i++) {
+                    if (bgnum == rw_dat[i].bg_num && gbix == rw_dat[i].rwgbix) {
+                        gbix = rw_dat[i].gbix;
+                        if (!(ppgCheckTextureNumber(0, gbix))) {
+                            ppgSetupCurrentDataList(&ppgRwBgList);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            bgDrawOneChip(x, y, 128, 128, gbix, -1, ofsPal);
+            ppgSetupCurrentDataList(curDataList);
+            x += 128;
+        }
+        y += 128;
+    }
+}
+
+void bgDrawOneChip(s32 x, s32 y, s32 xs, s32 ys, s32 gbix, u32 vtxCol, s32 ofsPal) {
+    s32 i;
+
+    if (No_Trans == 0 && ppgCheckTextureNumber(0, gbix)) {
+        ppgCalScrPosition(x, y, xs, ys);
+        if (!(scrDrawPos->x < 384.0f && !(scrDrawPos[3].x < 0.0f) && (scrDrawPos->y < 224.0f) &&
+              !(scrDrawPos[3].y < 0.0f))) {
+            return;
+        } else {
+            ppgWriteQuadUseTrans(scrDrawPos, vtxCol, 0, gbix, 0, 0, ofsPal);
+        }
+    }
+}
+
+void bgAkebonoDraw() {
+    s32 i;
+
+    scrDrawPos->x = 0.0f;
+    scrDrawPos->y = 0.0f;
+    scrDrawPos[3].x = 128.0f;
+    scrDrawPos[3].y = 224.0f;
+    scrDrawPos->z = scrDrawPos[3].z = *(&PrioBase[bg_priority[3]]);
+    scrDrawPos->s = scrDrawPos->t = 0.0f;
+    scrDrawPos[3].s = 1.0f;
+    scrDrawPos[3].t = 0.875f;
+    i = 0;
+
+    while (i < 3) {
+        ppgWriteQuadUseTrans(scrDrawPos, -1U, NULL, i, i, 0, 0);
+        scrDrawPos->x += 128.0f;
+        scrDrawPos[3].x += 128.0f;
+        i++;
+    }
+}
+
+void ppgCalScrPosition(s32 x, s32 y, s32 xs, s32 ys) {
+    Vec3 point[2];
+
+    point[0].x = (f32)x;
+    point[0].y = (f32)y;
+    point[1].x = (f32)(x + xs);
+    point[1].y = (f32)(y + ys);
+    point[0].z = point[1].z = 0;
+    njCalcPoints(0, &point[0], &point[0], 2);
+    scrDrawPos[0].x = scrDrawPos[2].x = point[0].x;
+    scrDrawPos[0].y = scrDrawPos[1].y = point[0].y;
+    scrDrawPos[1].x = scrDrawPos[3].x = point[1].x;
+    scrDrawPos[2].y = scrDrawPos[3].y = point[1].y;
+    scrDrawPos[0].z = scrDrawPos[1].z = scrDrawPos[2].z = scrDrawPos[3].z = point[0].z;
+    scrDrawPos[0].s = (0.5f + (f32)(x & 0x7F)) / 128.0f;
+    scrDrawPos[0].t = (0.5f + (f32)(y & 0x7F)) / 128.0f;
+    scrDrawPos[3].s = (0.5f + (f32)((x & 0x7F) + xs)) / 128.0f;
+    scrDrawPos[3].t = (0.5f + (f32)((y & 0x7F) + ys)) / 128.0f;
+    scrDrawPos[1].s = scrDrawPos[3].s;
+    scrDrawPos[2].s = scrDrawPos[0].s;
+    scrDrawPos[1].t = scrDrawPos[0].t;
+    scrDrawPos[2].t = scrDrawPos[3].t;
+}
+
+void scr_trans_sub2(s32 x, s32 y, s32 suzi) {
+    Vec3 point[2];
+    Vec3 spoint[2];
+
+    point[0].x = (f32)x;
+    spoint[0].x = (f32)(x + suzi);
+    point[0].y = spoint[0].y = (f32)(y + 0x200);
+    point[1].x = (f32)(x + 0x100);
+    spoint[1].x = (f32)(x + suzi + 0x100);
+    point[1].y = spoint[1].y = (f32)(y + 0x300);
+    point[0].z = point[1].z = spoint[0].z = spoint[1].z = 0;
+    njCalcPoints(NULL, &point[0], &point[0], 2);
+    njCalcPoints(NULL, &spoint[0], &spoint[0], 2);
+    bgpoly[0].x = spoint[0].x;
+    bgpoly[0].y = point[0].y;
+    bgpoly[0].z = point[0].z;
+    bgpoly[0].u = 0.0f;
+    bgpoly[0].v = 0.0f;
+    bgpoly[0].col = -1;
+    bgpoly[1].x = spoint[1].x;
+    bgpoly[1].y = point[0].y;
+    bgpoly[1].z = point[0].z;
+    bgpoly[1].u = 1.0f;
+    bgpoly[1].v = 0.0f;
+    bgpoly[1].col = -1;
+    bgpoly[2].x = point[0].x;
+    bgpoly[2].y = point[1].y;
+    bgpoly[2].z = point[1].z;
+    bgpoly[2].u = 0.0f;
+    bgpoly[2].v = 1.0f;
+    bgpoly[2].col = -1;
+    bgpoly[3].x = point[1].x;
+    bgpoly[3].y = point[1].y;
+    bgpoly[3].z = point[1].z;
+    bgpoly[3].u = 1.0f;
+    bgpoly[3].v = 1.0f;
+    bgpoly[3].col = -1;
+}
 
 void scr_calc(u8 bgnm) {
     njUnitMatrix(NULL);
@@ -83,15 +252,23 @@ void scr_calc(u8 bgnm) {
     njGetMatrix(&BgMATRIX[bgnm + 1]);
 }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", scr_calc2);
-
-#if defined(TARGET_PS2)
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Pause_Family_On);
-#else
-void Pause_Family_On() {
-    not_implemented(__func__);
+void scr_calc2(u8 bgnm) {
+    njUnitMatrix(NULL);
+    njScale(NULL, Frame_Zoom_X, Frame_Zoom_Y, 1.0f);
+    njScale(NULL, scr_sc, scr_sc, 1.0f);
+    njTranslate(NULL, 0.0f, 224.0f, 0.0f);
+    njScale(NULL, 1.0f, -1.0f, 1.0f);
+    njTranslate(NULL, (s16)-end_prm[bgnm + 1].bg_h_shift, (s16)-end_prm[bgnm + 1].bg_v_shift, 0.0f);
+    njGetMatrix(&BgMATRIX[bgnm + 1]);
 }
-#endif
+
+void Pause_Family_On() {
+    njUnitMatrix(0);
+    njScale(0, Frame_Zoom_X, Frame_Zoom_Y, 1);
+    njTranslate(0, 0, 224, 0);
+    njScale(0, 1, -1, 1);
+    njGetMatrix(&BgMATRIX[8]);
+}
 
 void Zoomf_Init() {
     zoom_add = 64;
@@ -228,7 +405,12 @@ void Family_Init() {
     }
 }
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Family_Set_R);
+void Family_Set_R(s8 fmnm, s16 x, s16 y) {
+    fm_pos[fmnm].scr_x.word_pos.h = x;
+    fm_pos[fmnm].scr_y.word_pos.h = y;
+    fm_pos[fmnm].scr_x_buff.word_pos.h = x;
+    fm_pos[fmnm].scr_y_buff.word_pos.h = y;
+}
 
 void Family_Set_W(s8 fmnm, s16 x, s16 y) {
     fm_pos[fmnm].scr_x.word_pos.h = x;
@@ -293,4 +475,6 @@ INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Family_Move);
 
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Ending_Family_Move);
 
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/bg", Bg_Disp_Switch);
+void Bg_Disp_Switch(u8 on_off) {
+    bg_disp_off = on_off;
+}
